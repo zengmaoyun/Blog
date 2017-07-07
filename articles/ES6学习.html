@@ -15,17 +15,17 @@
 
 
 
-<meta name="description" content="巩固基础，学习新技术，加油">
+<meta name="description" content="ES6学习简单记录">
 <meta name="keywords" content="ES6,工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ES6学习">
 <meta property="og:url" content="https://zengmaoyun.github.io/blog/articles/ES6学习.html">
 <meta property="og:site_name" content="zengmaoyun&#39;s blog">
-<meta property="og:description" content="巩固基础，学习新技术，加油">
-<meta property="og:updated_time" content="2017-07-05T05:27:32.395Z">
+<meta property="og:description" content="ES6学习简单记录">
+<meta property="og:updated_time" content="2017-07-07T10:57:10.633Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6学习">
-<meta name="twitter:description" content="巩固基础，学习新技术，加油">
+<meta name="twitter:description" content="ES6学习简单记录">
 
 <link rel="apple-touch-icon" href= "/blog//apple-touch-icon.png">
 
@@ -299,7 +299,16 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        
+        <h2 id="简单记录"><a href="#简单记录" class="headerlink" title="简单记录"></a>简单记录</h2><p>1、let命令<br>声明变量，只在代码块中有效<br>2、const<br>声明一个只读的常量，一旦声明，常量的值就不能改变。<br><code>注</code>：并不是变量的值不得改动，而是变量指向的那个内存地址不得改动。<br>所以变量的属性可以改变，比如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> obj = &#123;<span class="string">"name"</span>,<span class="string">"jike"</span>&#125;;</div><div class="line"><span class="comment">//错误`obj = 1`;</span></div><div class="line">obj.address = <span class="string">"北京"</span>;  <span class="comment">//正确</span></div></pre></td></tr></table></figure></p>
+<p>3、一个将元素彻底冻结的函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> constantize = <span class="function">(<span class="params">obj</span>) =&gt;</span> &#123;</div><div class="line">  <span class="built_in">Object</span>.freeze(obj);</div><div class="line">  <span class="built_in">Object</span>.keys(obj).forEach( <span class="function">(<span class="params">key, i</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">if</span> ( <span class="keyword">typeof</span> obj[key] === <span class="string">'object'</span> ) &#123;</div><div class="line">      constantize( obj[key] );</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>1) Object.freeze(obj)<br>阻止修改现有属性的特性和值，并阻止添加新属性。<br>2) Object.keys(obj)<br>返回对象的可枚举属性和方法的名称。</p>
+<p>4、数组解构赋值-按照位置解构<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</div><div class="line"><span class="keyword">let</span> b = <span class="number">2</span>;</div><div class="line"><span class="keyword">let</span> c = <span class="number">3</span>;</div><div class="line"></div><div class="line">ES6 允许写成下面这样。</div><div class="line"></div><div class="line"><span class="keyword">let</span> [a, b, c] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div></pre></td></tr></table></figure></p>
+<p><code>在这里没看懂的</code><br>事实上，只要某种数据结构具有 Iterator 接口，都可以采用数组形式的解构赋值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">fibs</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> a = <span class="number">0</span>;</div><div class="line">  <span class="keyword">let</span> b = <span class="number">1</span>;</div><div class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">    <span class="string">`yield a`</span><span class="string">`;</span></div><div class="line">    [a, b] = [b, a + b];</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">let [first, second, third, fourth, fifth, sixth] = fibs();</div><div class="line">sixth // 5</div><div class="line">上面代码中，fibs是一个 Generator 函数（参见《Generator 函数》一章）</div><div class="line">原生具有 Iterator 接口。解构赋值会依次从这个接口获取值。</div></pre></td></tr></table></figure>
+<p>5、对象的解构赋值-按照属性名解构<br>或者-不同名的时候<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">first</span>: <span class="string">'hello'</span>, <span class="attr">last</span>: <span class="string">'world'</span> &#125;;</div><div class="line"><span class="keyword">let</span> &#123; <span class="attr">first</span>: <span class="string">`f`</span>, <span class="attr">last</span>: <span class="string">`l`</span> &#125; = obj;</div><div class="line">f <span class="comment">// 'hello'</span></div><div class="line">l <span class="comment">// 'world'</span></div><div class="line">如：</div><div class="line"><span class="keyword">let</span> &#123; <span class="attr">foo</span>: baz &#125; = &#123; <span class="attr">foo</span>: <span class="string">"aaa"</span>, <span class="attr">bar</span>: <span class="string">"bbb"</span> &#125;;</div><div class="line">baz <span class="comment">// "aaa"</span></div><div class="line">foo <span class="comment">// error: foo is not defined</span></div></pre></td></tr></table></figure></p>
+<p>foo是匹配的模式，baz才是变量。真正被赋值的是变量baz，而不是模式foo。</p>
+<p>注意，采用这种写法时，变量的声明和赋值是一体的。对于let和const来说，变量不能重新声明，所以一旦赋值的变量以前声明过，就会报错。</p>
+
       
     </div>
     
@@ -310,7 +319,7 @@
         <p><span>本文标题:</span><a href="/blog/articles/ES6学习.html">ES6学习</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">zengmaoyun</a></p>
         <p><span>发布时间:</span>2017-07-05, 13:26:18</p>
-        <p><span>最后更新:</span>2017-07-05, 13:27:32</p>
+        <p><span>最后更新:</span>2017-07-07, 18:57:10</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/blog/articles/ES6学习.html" title="ES6学习">https://zengmaoyun.github.io/blog/articles/ES6学习.html</a>
             <span class="copy-path" data-clipboard-text="原文: https://zengmaoyun.github.io/blog/articles/ES6学习.html　　作者: zengmaoyun" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -324,6 +333,12 @@
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/blog/articles/webpack学习(二).html">
+                    webpack学习(二)
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -340,7 +355,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简单记录"><span class="toc-number">1.</span> <span class="toc-text">简单记录</span></a></li></ol>
         
     </div>
     <style>
@@ -371,7 +386,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/blog/articles/webpack学习(二).html" title="上一篇: webpack学习(二)">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -383,7 +400,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/articles/ES6学习.html">ES6学习</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习(一).html">webpack学习(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/hexo基础操作.html">hexo基础操作</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习(二).html">webpack学习(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/ES6学习.html">ES6学习</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习(一).html">webpack学习(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/hexo基础操作.html">hexo基础操作</a></li></ul>
 
 
 

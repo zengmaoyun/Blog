@@ -14,19 +14,18 @@
 <meta name="author" content="zengmaoyun" />
 
 
-    
-    
 
-
-<meta name="description" content="巩固基础，学习新技术，加油">
-<meta property="og:type" content="website">
-<meta property="og:title" content="zengmaoyun&#39;s blog">
-<meta property="og:url" content="https://zengmaoyun.github.io/blog/index.html">
+<meta name="description" content="webpack生成文件的调试，webpack打包css模块，热更新，loader使用等~~">
+<meta name="keywords" content="前端构建工具,webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack学习(二)">
+<meta property="og:url" content="https://zengmaoyun.github.io/blog/articles/webpack学习(二).html">
 <meta property="og:site_name" content="zengmaoyun&#39;s blog">
-<meta property="og:description" content="巩固基础，学习新技术，加油">
+<meta property="og:description" content="webpack生成文件的调试，webpack打包css模块，热更新，loader使用等~~">
+<meta property="og:updated_time" content="2017-07-06T03:28:55.336Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zengmaoyun&#39;s blog">
-<meta name="twitter:description" content="巩固基础，学习新技术，加油">
+<meta name="twitter:title" content="webpack学习(二)">
+<meta name="twitter:description" content="webpack生成文件的调试，webpack打包css模块，热更新，loader使用等~~">
 
 <link rel="apple-touch-icon" href= "/blog//apple-touch-icon.png">
 
@@ -54,13 +53,11 @@
 <link rel="stylesheet" href="/blog/css/style.css">
 
 
-    <style> .article { opacity: 0;} </style>
-
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>zengmaoyun&#39;s blog</title>
+<title>webpack学习(二) | zengmaoyun&#39;s blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -69,8 +66,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
-        isPost: false,
+        isHome: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -262,9 +259,7 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="_posts-webpack学习(二)" class="article article-type-_posts" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="_posts-webpack学习(二)" class="article article-type-_posts" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/blog/articles/webpack学习(二).html" class="article-date">
@@ -282,245 +277,156 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/articles/webpack学习(二).html">webpack学习(二)</a>
+    <h1 class="article-title" itemprop="name">
+      webpack学习(二)
     </h1>
   
 
       </header>
       
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              webpack生成文件的调试，webpack打包css模块，热更新，loader使用等~~
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
+      <div class="article-info article-info-post">
+        
 
-      
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/webpack/">webpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/前端构建工具/">前端构建工具</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/blog/articles/webpack学习(二).html#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="_posts-ES6学习" class="article article-type-_posts" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/blog/articles/ES6学习.html" class="article-date">
-      <time datetime="2017-07-05T05:26:18.000Z" itemprop="datePublished">2017-07-05</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/articles/ES6学习.html">ES6学习</a>
-    </h1>
-  
-
-      </header>
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
       
           
-              ES6学习简单记录
-          
+        <h2 id="webpack调试"><a href="#webpack调试" class="headerlink" title="webpack调试"></a>webpack调试</h2><blockquote>
+<ul>
+<li>打包后的文件有时候你是不容易找到出错了的地方对应的源代码的位置的</li>
+<li>Source Maps就是来帮我们解决这个问题的。</li>
+</ul>
+</blockquote>
+<p>通过简单的配置，Webpack在打包时可以为我们生成的source maps，为我们提供了一种对应编译文件和源文件的方法，使得编译后的代码可读性更高，也更容易调试。</p>
+<h3 id="介绍devtool"><a href="#介绍devtool" class="headerlink" title="介绍devtool"></a>介绍devtool</h3><p>在webpack的配置文件：<code>webpack.config.js</code>中配置source maps，需要配置<code>devtool</code><br><code>devtool</code>参数：</p>
+<blockquote>
+<ul>
+<li>source-map : 在一个单独的文件中产生一个完整且功能完全的文件。这个文件具有最好的source map，但是它<code>会减慢打包文件的构建速度</code>；</li>
+<li>cheap-module-source-map : 在一个单独的文件中生成一个不带列映射的map，不带列映射提高项目构建速度，但是也使得浏览器开发者工具只能对应到具体的行，不能对应到具体的列（符号），<code>会对调试造成不便</code>；</li>
+<li>eval-source-map : 使用eval打包源文件模块，在同一个文件中生成干净的完整的source map。这个选项可以在不影响构建速度的前提下生成完整的sourcemap，但是对打包后输出的JS文件的执行具有性能和安全的隐患。不过在<code>开发阶段这是一个非常好的选项</code>，但是在<code>生产阶段一定不要用这个选项</code>；</li>
+<li>cheap-module-eval-source-map : 这是在打包文件时最快的生成source map的方法，生成的Source Map 会和打包后的JavaScript文件同行显示，没有列映射;</li>
+</ul>
+</blockquote>
+<p>上述选项由上到下<code>打包速度越来越快</code>，不过同时也具有越来越多的负面作用，较快的构建速度的后果就是对打包后的文件的的<code>执行有一定影响</code>。<br>在学习阶段以及在小到中性的项目上，<code>eval-source-map</code>是一个很好的选项，不过记得<code>只在开发阶段使用它</code>。</p>
+<blockquote>
+<ul>
+<li>cheap-module-eval-source-map 方法构建速度更快，但是不利于调试，推荐在大型项目考虑da时间成本是使用。</li>
+</ul>
+</blockquote>
+<h3 id="配置devtool"><a href="#配置devtool" class="headerlink" title="配置devtool"></a>配置devtool</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">devtool</span>: <span class="string">'eval-source-map'</span>,<span class="comment">//配置生成Source Maps，选择合适的选项</span></div><div class="line">  entry:  __dirname + <span class="string">"/app/main.js"</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">path</span>: __dirname + <span class="string">"/public"</span>,</div><div class="line">    <span class="attr">filename</span>: <span class="string">"bundle.js"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="webpack构建本地服务"><a href="#webpack构建本地服务" class="headerlink" title="webpack构建本地服务"></a>webpack构建本地服务</h2><p>目的：览器监测你的代码的修改，并自动刷新修改后的结果。<br>实现：一个单独的组件（webpack-dev-server）—— Webpack提供一个可选的本地开发服务器，这个本地服务器基于node.js构建。</p>
+<h3 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev webpack-dev-server</div></pre></td></tr></table></figure>
+<h3 id="参数介绍"><a href="#参数介绍" class="headerlink" title="参数介绍"></a>参数介绍</h3><p>devserver作为webpack配置选项中，有下面的配置：</p>
+<blockquote>
+<ul>
+<li>contentBase : 默认webpack-dev-server会为根文件夹提供本地服务器，如果想为另外一个目录下的文件提供本地服务器，应该在这里设置其所在目录（本例设置到“public”目录）</li>
+<li>port : 端口，默认8080</li>
+<li>inline : true —— 源文件改变时自动刷新页面</li>
+<li>colors : true —— 终端输出的文件为彩色的</li>
+<li>historyApiFallback : true —— 所有的跳转将指向index.html，在开发单页应用时非常有用，它依赖于HTML5 history API</li>
+</ul>
+</blockquote>
+<h3 id="配置devtool-1"><a href="#配置devtool-1" class="headerlink" title="配置devtool"></a>配置devtool</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">devtool</span>: <span class="string">'eval-source-map'</span>,</div><div class="line"></div><div class="line">  <span class="attr">entry</span>:  __dirname + <span class="string">"/app/main.js"</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">path</span>: __dirname + <span class="string">"/public"</span>,</div><div class="line">    <span class="attr">filename</span>: <span class="string">"bundle.js"</span></div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  <span class="attr">devServer</span>: &#123;</div><div class="line">    <span class="attr">contentBase</span>: <span class="string">"./public"</span>,<span class="comment">//本地服务器所加载的页面所在的目录</span></div><div class="line">    colors: <span class="literal">true</span>,<span class="comment">//终端中输出结果为彩色</span></div><div class="line">    historyApiFallback: <span class="literal">true</span>,<span class="comment">//不跳转</span></div><div class="line">    inline: <span class="literal">true</span><span class="comment">//实时刷新</span></div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Loaders"><a href="#Loaders" class="headerlink" title="Loaders"></a>Loaders</h2>
       
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/工具/">工具</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/blog/articles/ES6学习.html#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
     </div>
     
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="_posts-webpack学习(一)" class="article article-type-_posts" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/blog/articles/webpack学习(一).html" class="article-date">
-      <time datetime="2017-06-14T05:42:50.000Z" itemprop="datePublished">2017-06-14</time>
-</a>
-
-
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/blog/articles/webpack学习(二).html">webpack学习(二)</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">zengmaoyun</a></p>
+        <p><span>发布时间:</span>2017-07-06, 10:59:46</p>
+        <p><span>最后更新:</span>2017-07-06, 11:28:55</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/blog/articles/webpack学习(二).html" title="webpack学习(二)">https://zengmaoyun.github.io/blog/articles/webpack学习(二).html</a>
+            <span class="copy-path" data-clipboard-text="原文: https://zengmaoyun.github.io/blog/articles/webpack学习(二).html　　作者: zengmaoyun" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+
+
+
+    <nav id="article-nav">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/articles/webpack学习(一).html">webpack学习(一)</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              什么是webpack，webpack有什么作用，怎么使用webpack
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/webpack/">webpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/前端构建工具/">前端构建工具</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/blog/articles/webpack学习(一).html#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hexo基础操作" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/blog/articles/hexo基础操作.html" class="article-date">
-      <time datetime="2017-06-09T08:49:58.903Z" itemprop="datePublished">2017-06-09</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/articles/hexo基础操作.html">hexo基础操作</a>
-    </h1>
-  
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/blog/articles/ES6学习.html">
+                    ES6学习
+                </a>
+            </div>
+        
+    </nav>
 
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>使用hexo命令新建文章-生成静态文件-推送到github远程站点，在我的博客里面就可以看到啦~~<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/hexo/">hexo</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/blog/articles/hexo基础操作.html#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
   
 </article>
 
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack调试"><span class="toc-number">1.</span> <span class="toc-text">webpack调试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍devtool"><span class="toc-number">1.1.</span> <span class="toc-text">介绍devtool</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置devtool"><span class="toc-number">1.2.</span> <span class="toc-text">配置devtool</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack构建本地服务"><span class="toc-number">2.</span> <span class="toc-text">webpack构建本地服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装："><span class="toc-number">2.1.</span> <span class="toc-text">安装：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数介绍"><span class="toc-number">2.2.</span> <span class="toc-text">参数介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置devtool-1"><span class="toc-number">2.3.</span> <span class="toc-text">配置devtool</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Loaders"><span class="toc-number">3.</span> <span class="toc-text">Loaders</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
 
 
 
+    
 
 
 
-  
-  
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/blog/articles/ES6学习.html" title="下一篇: ES6学习">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习(二).html">webpack学习(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/ES6学习.html">ES6学习</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习(一).html">webpack学习(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/hexo基础操作.html">hexo基础操作</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
