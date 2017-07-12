@@ -15,16 +15,17 @@
 
 
 
-<meta name="description" content="巩固基础，学习新技术，加油">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类标签">
-<meta property="og:url" content="https://zengmaoyun.github.io/blog/tags/index.html">
+<meta name="description" content="1、transition1transition：all 1s linear 1s;">
+<meta name="keywords" content="CSS3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css3动态提示效果">
+<meta property="og:url" content="https://zengmaoyun.github.io/blog/articles/css3动态提示.html">
 <meta property="og:site_name" content="zengmaoyun&#39;s blog">
-<meta property="og:description" content="巩固基础，学习新技术，加油">
-<meta property="og:updated_time" content="2017-06-09T02:50:03.068Z">
+<meta property="og:description" content="1、transition1transition：all 1s linear 1s;">
+<meta property="og:updated_time" content="2017-07-12T04:59:29.999Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类标签">
-<meta name="twitter:description" content="巩固基础，学习新技术，加油">
+<meta name="twitter:title" content="css3动态提示效果">
+<meta name="twitter:description" content="1、transition1transition：all 1s linear 1s;">
 
 <link rel="apple-touch-icon" href= "/blog//apple-touch-icon.png">
 
@@ -56,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>分类标签 | zengmaoyun&#39;s blog</title>
+<title>css3动态提示效果 | zengmaoyun&#39;s blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -66,7 +67,7 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -258,11 +259,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="_posts-css3动态提示" class="article article-type-_posts" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/blog/tags/index.html" class="article-date">
-      <time datetime="2017-06-09T02:48:38.000Z" itemprop="datePublished">2017-06-09</time>
+      <a href="/blog/articles/css3动态提示.html" class="article-date">
+      <time datetime="2017-06-09T06:18:33.000Z" itemprop="datePublished">2017-06-09</time>
 </a>
 
 
@@ -277,7 +278,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      分类标签
+      css3动态提示效果
     </h1>
   
 
@@ -287,6 +288,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/CSS3/">CSS3</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -294,96 +299,124 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <style>
-    .article-meta { display: none; }
-    #container .article .article-title { padding-right: 0; }
-    .article-header {
-        padding: 0;
-        padding-top: 26px;
-        border-left: none;
-        text-align: center;
-    }
-    .article-header:hover { border-left: none; }
-    .article-title { font-size: 1.6em }
-    .article-entry hr { margin: 0;}
-    .article-meta,
-    #container .article-info-post.article-info { display: none;}
-    #container .article .article-title { padding: 0; }
-</style>
+        <hr>
+<h3 id="1、transition"><a href="#1、transition" class="headerlink" title="1、transition"></a>1、transition</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">transition：all 1s linear 1s;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="动画过渡"><a href="#动画过渡" class="headerlink" title="动画过渡"></a>动画过渡</h4><p>transition-property：规定设置过渡效果的 CSS 属性的名称<br>transition-property: none|all|property;<br>默认：all<br>值:</p>
+<blockquote>
+<ul>
+<li>none：所有都不平滑</li>
+<li>all：表示所有属性变换都产生平滑的效果</li>
+<li>css属性名称，如width，height，相应的会产生平滑变化的效果，用逗号隔开</li>
+</ul>
+</blockquote>
+<p>transition-duration：规定动画完成所用时间<br>默认：0，意味着没有效果<br>要有动画效果，必须设置时间值<br>    值：时间，单位s</p>
+<p>transition-timing-function：规定动画的速度曲线<br>默认：ease<br>值：</p>
+<blockquote>
+<ul>
+<li>ease：慢速-快-慢速</li>
+<li>linear：匀速</li>
+<li>ease-in：慢速开始</li>
+<li>ease-out：慢速结束</li>
+<li>ease-in-out：慢速开始和结束</li>
+<li>cubic-bezier(n,n,n,n)：n在0-1</li>
+</ul>
+</blockquote>
+<p>transition-delay：规定动画何时开始，延迟多久<br>默认：0</p>
+<p>兼容性：<br>    safari支持-webkit-transition<br>    IE9以及之前的IE不支持tansition</p>
+<p>//兼容性写法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-moz-transition: width 2s; /* Firefox 4 */</div><div class="line">-webkit-transition: width 2s; /* Safari 和 Chrome */</div><div class="line">-o-transition: width 2s; /* Opera */</div></pre></td></tr></table></figure></p>
+<h3 id="2、transform"><a href="#2、transform" class="headerlink" title="2、transform"></a>2、transform</h3><h4 id="1）兼容性"><a href="#1）兼容性" class="headerlink" title="1）兼容性"></a>1）兼容性</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">transform:rotate(7deg);</div><div class="line">-ms-transform:rotate(7deg); 	/* IE 9 */</div><div class="line">-moz-transform:rotate(7deg); 	/* Firefox */</div><div class="line">-webkit-transform:rotate(7deg); /* Safari 和 Chrome */</div><div class="line">-o-transform:rotate(7deg); 	/* Opera */</div></pre></td></tr></table></figure>
+<pre><code>opera和IE9只支持2D
+</code></pre><h4 id="2）translate"><a href="#2）translate" class="headerlink" title="2）translate"></a>2）translate</h4><p>位移，x轴，y轴，z轴<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">translate(x,y)，translateX(x)，translateY(y)，translateZ(z)，translate3d(x,y,z)</div><div class="line">transform : translate();</div><div class="line">translateZ() 和 translate3d()，是3d效果</div></pre></td></tr></table></figure></p>
+<h4 id="3）rotate"><a href="#3）rotate" class="headerlink" title="3）rotate()"></a>3）rotate()</h4><p>绕轴旋转<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">transform: rotate(angle)</div></pre></td></tr></table></figure></p>
+<p>angle：旋转角度</p>
+<blockquote>
+<ul>
+<li>rotate(angle)：2d旋转和rotateZ(angle)相同效果，绕Z轴旋转</li>
+<li>rotateX(angle)：绕x轴旋转，3d旋转效果</li>
+<li>rotateY(angle)：绕y轴旋转，3d旋转效果</li>
+<li>rotateZ(angle)：绕z轴旋转，2d旋转效果</li>
+</ul>
+</blockquote>
+<h4 id="4）skew"><a href="#4）skew" class="headerlink" title="4）skew()"></a>4）skew()</h4><p>倾斜转换</p>
+<blockquote>
+<ul>
+<li>skew(x-angle,y-angle)：沿着x轴和y轴倾斜转换</li>
+<li>skewX(angle)：沿着x轴倾斜</li>
+<li>skewY(angle)：沿着y轴倾斜</li>
+</ul>
+</blockquote>
+<p>倾斜效果的时候注意倾斜的对象，比如div倾斜，但是div较大，div里面的文字的倾斜效果就看着不明显<br>或者可以直接把倾斜效果写到文字上</p>
+<p>5）scale()<br>缩放</p>
+<blockquote>
+<ul>
+<li>scale(x,y)：定义2d缩放，x和y轴缩放的比例</li>
+<li>scaleX(x)：定义x轴缩放比例</li>
+<li>scaleY(y)：定义y轴缩放比例</li>
+<li>scale3d(x,y,z)：定义3d缩放</li>
+<li>scaleZ(z)：定义z轴3d缩放</li>
+</ul>
+</blockquote>
 
-
-    <!-- Tag Cloud Page -->
-    <hr>
-<br>
-
-
-<p class="count"></p>
-
-<div class="tags">
-    <a href="/blog/tags/CSS3/" style="font-size: 16px; color: #808080">CSS3</a> <a href="/blog/tags/ES6/" style="font-size: 16px; color: #808080">ES6</a> <a href="/blog/tags/hexo/" style="font-size: 16px; color: #808080">hexo</a> <a href="/blog/tags/webpack/" style="font-size: 35px; color: #000">webpack</a> <a href="/blog/tags/前端构建工具/" style="font-size: 35px; color: #000">前端构建工具</a> <a href="/blog/tags/工具/" style="font-size: 16px; color: #808080">工具</a> <a href="/blog/tags/积累/" style="font-size: 16px; color: #808080">积累</a> <a href="/blog/tags/随笔/" style="font-size: 16px; color: #808080">随笔</a>
-</div>
-<style>
-    .category-list li{
-        display: inline-block;
-        margin: 0 1em .5em 0;
-        padding: 4px;
-        border: 1px solid lightgray;
-        font-size: 1.2rem;
-    }
-    .category-list a { color: gray; }
-    .category-list-item:hover a {
-        color: gray;
-        text-decoration: none;
-    }
-    .category-list-count {
-        margin-left: 2px;
-        font-size: .9rem;
-    }
-    .article-entry ul li:before{ display: none; }
-    .article-inner { text-align: center; }
-    .tags {
-        max-width: 42em;
-        margin: 2em auto;
-        margin-top: 0em;
-    }
-    .tags a {
-        margin-right: 1em;
-        line-height: 65px;
-        border-bottom: 1px solid gray;
-        white-space: nowrap;
-        transition: border-bottom .5s;
-    }
-    .tags a:hover {
-        border-bottom: 3px dotted gray;
-        text-decoration: none;
-    }
-    #count > span {
-        margin: auto .2em;
-        font-weight: bold;
-    }
-</style>
-
-<!-- Count tags and categories -->
-<p id="count">
-        已有<span><script>document.write($(".category-list-item").length)</script></span>个分类，
-        共计<span><script>document.write($(".tags > a").length)</script></span>个标签
-</p>
-<script>
-    $('#count').appendTo('.count');
-</script>
-
-          
-        
       
     </div>
     
   </div>
   
     
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/blog/articles/css3动态提示.html">css3动态提示效果</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">zengmaoyun</a></p>
+        <p><span>发布时间:</span>2017-06-09, 14:18:33</p>
+        <p><span>最后更新:</span>2017-07-12, 12:59:29</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/blog/articles/css3动态提示.html" title="css3动态提示效果">https://zengmaoyun.github.io/blog/articles/css3动态提示.html</a>
+            <span class="copy-path" data-clipboard-text="原文: https://zengmaoyun.github.io/blog/articles/css3动态提示.html　　作者: zengmaoyun" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
 
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/blog/articles/hexo基础操作.html">
+                    hexo基础操作
+                </a>
+            </div>
+        
+        
+    </nav>
 
   
 </article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、transition"><span class="toc-number">1.</span> <span class="toc-text">1、transition</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#动画过渡"><span class="toc-number">1.1.</span> <span class="toc-text">动画过渡</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、transform"><span class="toc-number">2.</span> <span class="toc-text">2、transform</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1）兼容性"><span class="toc-number">2.1.</span> <span class="toc-text">1）兼容性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2）translate"><span class="toc-number">2.2.</span> <span class="toc-text">2）translate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3）rotate"><span class="toc-number">2.3.</span> <span class="toc-text">3）rotate()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4）skew"><span class="toc-number">2.4.</span> <span class="toc-text">4）skew()</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
 
@@ -391,6 +424,24 @@
 
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/blog/articles/hexo基础操作.html" title="上一篇: hexo基础操作">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/articles/日常积累.html">日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习二.html">webpack学习(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/ES6学习.html">ES6学习</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习(一).html">webpack学习(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/hexo基础操作.html">hexo基础操作</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/css3动态提示.html">css3动态提示效果</a></li></ul>
 
 
 
