@@ -15,18 +15,20 @@
 
 
 
-<meta name="description" content="webpack生成文件的调试，webpack打包css模块，热更新，loader使用等~~">
-<meta name="keywords" content="前端构建工具,webpack">
+<meta name="description" content="使用vue-cli脚手架开发一个项目的过程，包括如何使用sass等">
+<meta name="keywords" content="vue">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack学习(二)">
-<meta property="og:url" content="https://zengmaoyun.github.io/blog/articles/webpack学习二.html">
+<meta property="og:title" content="使用vue-cli脚手架开发一个项目">
+<meta property="og:url" content="https://zengmaoyun.github.io/blog/articles/使用vue-cli脚手架开发一个项目.html">
 <meta property="og:site_name" content="zengmaoyun&#39;s blog">
-<meta property="og:description" content="webpack生成文件的调试，webpack打包css模块，热更新，loader使用等~~">
+<meta property="og:description" content="使用vue-cli脚手架开发一个项目的过程，包括如何使用sass等">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-06T03:28:55.336Z">
+<meta property="og:image" content="https://zengmaoyun.github.io/blog/img/article/vue-sass-error.png">
+<meta property="og:updated_time" content="2017-08-08T11:22:33.006Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="webpack学习(二)">
-<meta name="twitter:description" content="webpack生成文件的调试，webpack打包css模块，热更新，loader使用等~~">
+<meta name="twitter:title" content="使用vue-cli脚手架开发一个项目">
+<meta name="twitter:description" content="使用vue-cli脚手架开发一个项目的过程，包括如何使用sass等">
+<meta name="twitter:image" content="https://zengmaoyun.github.io/blog/img/article/vue-sass-error.png">
 
 <link rel="apple-touch-icon" href= "/blog//apple-touch-icon.png">
 
@@ -58,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>webpack学习(二) | zengmaoyun&#39;s blog</title>
+<title>使用vue-cli脚手架开发一个项目 | zengmaoyun&#39;s blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -260,11 +262,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="_posts-webpack学习二" class="article article-type-_posts" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="_posts-使用vue-cli脚手架开发一个项目" class="article article-type-_posts" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/blog/articles/webpack学习二.html" class="article-date">
-      <time datetime="2017-07-06T02:59:46.000Z" itemprop="datePublished">2017-07-06</time>
+      <a href="/blog/articles/使用vue-cli脚手架开发一个项目.html" class="article-date">
+      <time datetime="2017-08-08T04:44:02.000Z" itemprop="datePublished">2017-08-08</time>
 </a>
 
 
@@ -279,7 +281,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      webpack学习(二)
+      使用vue-cli脚手架开发一个项目
     </h1>
   
 
@@ -290,7 +292,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/webpack/">webpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/前端构建工具/">前端构建工具</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/vue/">vue</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -300,43 +302,17 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="webpack调试"><a href="#webpack调试" class="headerlink" title="webpack调试"></a>webpack调试</h2><blockquote>
-<ul>
-<li>打包后的文件有时候你是不容易找到出错了的地方对应的源代码的位置的</li>
-<li>Source Maps就是来帮我们解决这个问题的。</li>
-</ul>
-</blockquote>
-<p>通过简单的配置，Webpack在打包时可以为我们生成的source maps，为我们提供了一种对应编译文件和源文件的方法，使得编译后的代码可读性更高，也更容易调试。</p>
-<h3 id="介绍devtool"><a href="#介绍devtool" class="headerlink" title="介绍devtool"></a>介绍devtool</h3><p>在webpack的配置文件：<code>webpack.config.js</code>中配置source maps，需要配置<code>devtool</code><br><code>devtool</code>参数：</p>
-<blockquote>
-<ul>
-<li>source-map : 在一个单独的文件中产生一个完整且功能完全的文件。这个文件具有最好的source map，但是它<code>会减慢打包文件的构建速度</code>；</li>
-<li>cheap-module-source-map : 在一个单独的文件中生成一个不带列映射的map，不带列映射提高项目构建速度，但是也使得浏览器开发者工具只能对应到具体的行，不能对应到具体的列（符号），<code>会对调试造成不便</code>；</li>
-<li>eval-source-map : 使用eval打包源文件模块，在同一个文件中生成干净的完整的source map。这个选项可以在不影响构建速度的前提下生成完整的sourcemap，但是对打包后输出的JS文件的执行具有性能和安全的隐患。不过在<code>开发阶段这是一个非常好的选项</code>，但是在<code>生产阶段一定不要用这个选项</code>；</li>
-<li>cheap-module-eval-source-map : 这是在打包文件时最快的生成source map的方法，生成的Source Map 会和打包后的JavaScript文件同行显示，没有列映射;</li>
-</ul>
-</blockquote>
-<p>上述选项由上到下<code>打包速度越来越快</code>，不过同时也具有越来越多的负面作用，较快的构建速度的后果就是对打包后的文件的的<code>执行有一定影响</code>。<br>在学习阶段以及在小到中性的项目上，<code>eval-source-map</code>是一个很好的选项，不过记得<code>只在开发阶段使用它</code>。</p>
-<blockquote>
-<ul>
-<li>cheap-module-eval-source-map 方法构建速度更快，但是不利于调试，推荐在大型项目考虑da时间成本是使用。</li>
-</ul>
-</blockquote>
-<h3 id="配置devtool"><a href="#配置devtool" class="headerlink" title="配置devtool"></a>配置devtool</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">devtool</span>: <span class="string">'eval-source-map'</span>,<span class="comment">//配置生成Source Maps，选择合适的选项</span></div><div class="line">  entry:  __dirname + <span class="string">"/app/main.js"</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">path</span>: __dirname + <span class="string">"/public"</span>,</div><div class="line">    <span class="attr">filename</span>: <span class="string">"bundle.js"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="webpack构建本地服务"><a href="#webpack构建本地服务" class="headerlink" title="webpack构建本地服务"></a>webpack构建本地服务</h2><p>目的：览器监测你的代码的修改，并自动刷新修改后的结果。<br>实现：一个单独的组件（webpack-dev-server）—— Webpack提供一个可选的本地开发服务器，这个本地服务器基于node.js构建。</p>
-<h3 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev webpack-dev-server</div></pre></td></tr></table></figure>
-<h3 id="参数介绍"><a href="#参数介绍" class="headerlink" title="参数介绍"></a>参数介绍</h3><p>devserver作为webpack配置选项中，有下面的配置：</p>
-<blockquote>
-<ul>
-<li>contentBase : 默认webpack-dev-server会为根文件夹提供本地服务器，如果想为另外一个目录下的文件提供本地服务器，应该在这里设置其所在目录（本例设置到“public”目录）</li>
-<li>port : 端口，默认8080</li>
-<li>inline : true —— 源文件改变时自动刷新页面</li>
-<li>colors : true —— 终端输出的文件为彩色的</li>
-<li>historyApiFallback : true —— 所有的跳转将指向index.html，在开发单页应用时非常有用，它依赖于HTML5 history API</li>
-</ul>
-</blockquote>
-<h3 id="配置devtool-1"><a href="#配置devtool-1" class="headerlink" title="配置devtool"></a>配置devtool</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">devtool</span>: <span class="string">'eval-source-map'</span>,</div><div class="line"></div><div class="line">  <span class="attr">entry</span>:  __dirname + <span class="string">"/app/main.js"</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">path</span>: __dirname + <span class="string">"/public"</span>,</div><div class="line">    <span class="attr">filename</span>: <span class="string">"bundle.js"</span></div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  <span class="attr">devServer</span>: &#123;</div><div class="line">    <span class="attr">contentBase</span>: <span class="string">"./public"</span>,<span class="comment">//本地服务器所加载的页面所在的目录</span></div><div class="line">    colors: <span class="literal">true</span>,<span class="comment">//终端中输出结果为彩色</span></div><div class="line">    historyApiFallback: <span class="literal">true</span>,<span class="comment">//不跳转</span></div><div class="line">    inline: <span class="literal">true</span><span class="comment">//实时刷新</span></div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Loaders"><a href="#Loaders" class="headerlink" title="Loaders"></a>Loaders</h2>
+        <h2 id="安装vue-cli"><a href="#安装vue-cli" class="headerlink" title="安装vue-cli"></a>安装vue-cli</h2><h3 id="全局安装-vue-cli"><a href="#全局安装-vue-cli" class="headerlink" title="全局安装 vue-cli"></a>全局安装 vue-cli</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --global vue-cli</div></pre></td></tr></table></figure>
+<h3 id="创建一个基于-webpack-模板的新项目"><a href="#创建一个基于-webpack-模板的新项目" class="headerlink" title="创建一个基于 webpack 模板的新项目"></a>创建一个基于 webpack 模板的新项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vue init webpack my-project</div></pre></td></tr></table></figure>
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cd my-project</div><div class="line">$ npm install      //yarn install</div><div class="line">$ npm run dev</div></pre></td></tr></table></figure>
+<h2 id="在项目里面使用sass-scss"><a href="#在项目里面使用sass-scss" class="headerlink" title="在项目里面使用sass/scss"></a>在项目里面使用sass/scss</h2><h3 id="安装sass-loader-和-node-sass依赖"><a href="#安装sass-loader-和-node-sass依赖" class="headerlink" title="安装sass-loader 和  node-sass依赖"></a>安装sass-loader 和  node-sass依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev sass-loader</div><div class="line">//sass-loader运行依赖node-sass</div><div class="line">npm install --save-dev node-sass</div></pre></td></tr></table></figure>
+<h3 id="组件中使用"><a href="#组件中使用" class="headerlink" title="组件中使用"></a>组件中使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;style lang=&quot;scss&quot;&gt;</div><div class="line"></div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+<h3 id="引用scss文件"><a href="#引用scss文件" class="headerlink" title="引用scss文件"></a>引用scss文件</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;style lang="scss"&gt;</div><div class="line">	@import "../assets/scss/commom";</div><div class="line">	</div><div class="line">	.select-box &#123;</div><div class="line">		font-size: .75rem;</div><div class="line">		.title &#123;</div><div class="line">			color: #333;</div><div class="line">		&#125;</div><div class="line">		.select &#123;</div><div class="line">			color: #CCC;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+<h3 id="引用scss文件遇到的问题"><a href="#引用scss文件遇到的问题" class="headerlink" title="引用scss文件遇到的问题"></a>引用scss文件遇到的问题</h3><p>报如下错误：<br><img src="/blog/img/article/vue-sass-error.png" alt="报错"></p>
+<p><strong>原因：</strong> @import .scss文件之后没有写分号(;)了<br><strong>TIP：</strong> 使用@import引用scss文件必须写分号</p>
+<h2 id="使用ajax请求数据"><a href="#使用ajax请求数据" class="headerlink" title="使用ajax请求数据"></a>使用ajax请求数据</h2><h3 id="使用promise请求数据（不跨域）"><a href="#使用promise请求数据（不跨域）" class="headerlink" title="使用promise请求数据（不跨域）"></a>使用promise请求数据（不跨域）</h3><p>新建一个js：ajax.js，代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> (&#123;type=<span class="string">"GET"</span>, url=<span class="string">""</span>, data=&#123;&#125;, <span class="keyword">async</span>=<span class="literal">true</span>&#125; = &#123;&#125;) =&gt; &#123;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</div><div class="line">		type = type.toUpperCase();</div><div class="line">		</div><div class="line">		<span class="keyword">let</span> requestObj = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">		</div><div class="line">		<span class="comment">/* 兼容IE5、6的代码</span></div><div class="line">		 * let requestObj;</div><div class="line">		if (window.XMLTttpRequest) &#123;</div><div class="line">			requestObj = new XMLHttpRequest();</div><div class="line">		&#125;else &#123; </div><div class="line">			//IE5 和 IE6</div><div class="line">			requestObj = new ActiveXObject;</div><div class="line">		&#125;</div><div class="line">		*/</div><div class="line">		</div><div class="line">		<span class="keyword">if</span> (type == <span class="string">"GET"</span>) &#123;</div><div class="line">			<span class="keyword">let</span> dataStr = <span class="string">''</span>;</div><div class="line">			<span class="comment">//拼接URL</span></div><div class="line">			<span class="built_in">Object</span>.keys(data).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</div><div class="line">				dataStr += key + <span class="string">'='</span> + data[key] + <span class="string">'&amp;'</span>;</div><div class="line">			&#125;);</div><div class="line">			dataStr = dataStr.substr(<span class="number">0</span>,dataStr.lastIndexOf(<span class="string">'&amp;'</span>));</div><div class="line">			url = url + <span class="string">'?'</span> + dataStr;</div><div class="line">			requestObj.open(type, url, <span class="keyword">async</span>);</div><div class="line">			requestObj.setRequestHeader(<span class="string">"Content-type"</span>, <span class="string">"application/x-www-form-urlencoded"</span>);</div><div class="line">			requestObj.send();</div><div class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(type == <span class="string">'POST'</span>) &#123;</div><div class="line">			requestObj.open(type, url, <span class="keyword">async</span>);</div><div class="line">			requestObj.setRequestHeader(<span class="string">"content-type"</span>, <span class="string">"application/x-www-form-urlencoded"</span>);</div><div class="line">			requestObj.send(<span class="built_in">JSON</span>.stringify(data));</div><div class="line">		&#125;<span class="keyword">else</span> &#123;</div><div class="line">			reject(<span class="string">'type error'</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="comment">//返回状态</span></div><div class="line">		<span class="comment">//onreadystatechange 是一个事件句柄。它的值是一个函数，当 XMLHttpRequest对象的状态发生改变时，会触发此函数</span></div><div class="line">		<span class="comment">//状态从 0 (uninitialized) 到 4 (complete) 进行变化。状态4表示解析完成，我们开始执行代码</span></div><div class="line">		requestObj.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">			<span class="keyword">if</span>(requestObj.readyState == <span class="number">4</span>) &#123;  <span class="comment">//4表示解析完毕</span></div><div class="line">				<span class="keyword">if</span>(requestObj.status == <span class="number">200</span>) &#123;</div><div class="line">					<span class="keyword">let</span> obj = requestObj.response;</div><div class="line">					<span class="keyword">if</span>(<span class="keyword">typeof</span> obj !== <span class="string">'object'</span>) &#123;</div><div class="line">						obj = <span class="built_in">JSON</span>.parse(obj);</div><div class="line">					&#125;</div><div class="line">					resolve(obj);</div><div class="line">				&#125;<span class="keyword">else</span> &#123;</div><div class="line">					reject(requestObj);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>参数使用解构赋值，在vue文件里面使用这个方法获取数据。<br>ajax(resdata)方法返回的是一个promise对象，要加上.then(function(){})，获得data数据并处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">openCityBox: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">let</span> that = <span class="keyword">this</span>;</div><div class="line">	<span class="keyword">this</span>.citybox = <span class="literal">true</span>;</div><div class="line">	<span class="keyword">let</span> resdata = &#123;</div><div class="line">		<span class="string">"url"</span>: <span class="string">"static/city.json"</span></div><div class="line">	&#125;;</div><div class="line">	<span class="comment">//处理数据</span></div><div class="line">	ajax(resdata).then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</div><div class="line">		that.cityarr = data.city;</div><div class="line">	&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -344,13 +320,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/blog/articles/webpack学习二.html">webpack学习(二)</a></p>
+        <p><span>本文标题:</span><a href="/blog/articles/使用vue-cli脚手架开发一个项目.html">使用vue-cli脚手架开发一个项目</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">zengmaoyun</a></p>
-        <p><span>发布时间:</span>2017-07-06, 10:59:46</p>
-        <p><span>最后更新:</span>2017-07-06, 11:28:55</p>
+        <p><span>发布时间:</span>2017-08-08, 12:44:02</p>
+        <p><span>最后更新:</span>2017-08-08, 19:22:33</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/blog/articles/webpack学习二.html" title="webpack学习(二)">https://zengmaoyun.github.io/blog/articles/webpack学习二.html</a>
-            <span class="copy-path" data-clipboard-text="原文: https://zengmaoyun.github.io/blog/articles/webpack学习二.html　　作者: zengmaoyun" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/blog/articles/使用vue-cli脚手架开发一个项目.html" title="使用vue-cli脚手架开发一个项目">https://zengmaoyun.github.io/blog/articles/使用vue-cli脚手架开发一个项目.html</a>
+            <span class="copy-path" data-clipboard-text="原文: https://zengmaoyun.github.io/blog/articles/使用vue-cli脚手架开发一个项目.html　　作者: zengmaoyun" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -362,16 +338,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/blog/articles/常用命令行.html">
-                    常用命令行记录
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/blog/articles/ES6学习.html">
-                    ES6学习
+                <a href="/blog/articles/配置秘钥github和gitlab共存.html">
+                    github一台电脑配置多个秘钥
                 </a>
             </div>
         
@@ -383,7 +353,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack调试"><span class="toc-number">1.</span> <span class="toc-text">webpack调试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍devtool"><span class="toc-number">1.1.</span> <span class="toc-text">介绍devtool</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置devtool"><span class="toc-number">1.2.</span> <span class="toc-text">配置devtool</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack构建本地服务"><span class="toc-number">2.</span> <span class="toc-text">webpack构建本地服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装："><span class="toc-number">2.1.</span> <span class="toc-text">安装：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数介绍"><span class="toc-number">2.2.</span> <span class="toc-text">参数介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置devtool-1"><span class="toc-number">2.3.</span> <span class="toc-text">配置devtool</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Loaders"><span class="toc-number">3.</span> <span class="toc-text">Loaders</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装vue-cli"><span class="toc-number">1.</span> <span class="toc-text">安装vue-cli</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#全局安装-vue-cli"><span class="toc-number">1.1.</span> <span class="toc-text">全局安装 vue-cli</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个基于-webpack-模板的新项目"><span class="toc-number">1.2.</span> <span class="toc-text">创建一个基于 webpack 模板的新项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装依赖"><span class="toc-number">1.3.</span> <span class="toc-text">安装依赖</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在项目里面使用sass-scss"><span class="toc-number">2.</span> <span class="toc-text">在项目里面使用sass/scss</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装sass-loader-和-node-sass依赖"><span class="toc-number">2.1.</span> <span class="toc-text">安装sass-loader 和  node-sass依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件中使用"><span class="toc-number">2.2.</span> <span class="toc-text">组件中使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用scss文件"><span class="toc-number">2.3.</span> <span class="toc-text">引用scss文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用scss文件遇到的问题"><span class="toc-number">2.4.</span> <span class="toc-text">引用scss文件遇到的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用ajax请求数据"><span class="toc-number">3.</span> <span class="toc-text">使用ajax请求数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用promise请求数据（不跨域）"><span class="toc-number">3.1.</span> <span class="toc-text">使用promise请求数据（不跨域）</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -414,15 +384,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/blog/articles/常用命令行.html" title="上一篇: 常用命令行记录">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/blog/articles/ES6学习.html" title="下一篇: ES6学习">
+            <a href="/blog/articles/配置秘钥github和gitlab共存.html" title="下一篇: github一台电脑配置多个秘钥">
                 <i class="fa fa-angle-right"></i>
             </a>
         
