@@ -24,7 +24,7 @@
 <meta property="og:description" content="使用vue-cli脚手架开发一个项目的过程，包括如何使用sass等">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://zengmaoyun.github.io/blog/img/article/vue-sass-error.png">
-<meta property="og:updated_time" content="2017-08-21T10:59:35.459Z">
+<meta property="og:updated_time" content="2017-08-22T08:55:00.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用vue-cli脚手架开发一个项目">
 <meta name="twitter:description" content="使用vue-cli脚手架开发一个项目的过程，包括如何使用sass等">
@@ -187,7 +187,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/前端构建工具/">前端构建工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/学习总结/">学习总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/标准/">标准</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/积累/">积累</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/随笔/">随笔</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/html/">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/前端构建工具/">前端构建工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/学习总结/">学习总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/标准/">标准</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/积累/">积累</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔记/">笔记</a></li></ul>
                     </div>
                 </section>
                 
@@ -340,13 +340,14 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></div><div class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></div><div class="line"><span class="keyword">import</span> util <span class="keyword">from</span> <span class="string">'./config/util'</span>   <span class="comment">//***</span></div><div class="line"></div><div class="line"><span class="comment">//全局方法</span></div><div class="line">Vue.use(util);     <span class="comment">//** 必须使用这一步</span></div></pre></td></tr></table></figure>
 <p>3、现在，在vue组件里面就可以直接使用change这个方法了，和使用methods里面的方法一样，this.change()</p>
 <h2 id="单独引用vue模块-vue-js"><a href="#单独引用vue模块-vue-js" class="headerlink" title="单独引用vue模块(vue.js)"></a>单独引用vue模块(vue.js)</h2><p>在做项目的时候遇到的一个问题，build打包之后的文件，vendor.js非常大，至少100k以上，每次打包都会有不同，需要完全替换<br>如果在上线之后再有需求，改动上线之后，用户每次就要重新加载这一百多k的文件，vendor.js里面包含的内容主要是我们项目中使用到的模块(vue，vuex，vue-router…)，当然这个项目大的模块只用到了vue，但是<strong>vue.min.js也有将近80k</strong>，所以单独拿出来很有必要。</p>
+<p>webpack 中的 externals 配置提供了「不从 bundle 中引用依赖」的方式。<a href="http://www.css88.com/doc/webpack2/configuration/externals/" target="_blank" rel="external">使用介绍</a><br>解决的是，所创建的 bundle 依赖于那些存在于用户环境(consumer environment)中的依赖，防止将某些 import 包(package)打包到 bundle 中。<br>当前这个情况就可以用webpack 中的 externals实现</p>
 <h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h3><p>就两点：</p>
 <ul>
 <li>1、在html里面直接引入vue.min.js（下载地址：<a href="https://cn.vuejs.org/v2/guide/installation.html）" target="_blank" rel="external">https://cn.vuejs.org/v2/guide/installation.html）</a></li>
 <li>2、在项目配置文件中配置不打包vue模块，使用externals</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    ...</div><div class="line">    output: &#123;</div><div class="line">      ...</div><div class="line">      libraryTarget: <span class="string">"umd"</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">externals</span>: &#123;</div><div class="line">  	<span class="string">'vue'</span>: &#123;</div><div class="line">  	    <span class="attr">amd</span>: <span class="string">'vue'</span>,</div><div class="line">            <span class="attr">root</span>: <span class="string">'Vue'</span>,  <span class="comment">//注意这里是大写，全局变量</span></div><div class="line">            commonjs: <span class="string">'vue'</span>,</div><div class="line">            <span class="attr">commonjs2</span>: <span class="string">'vue'</span></div><div class="line">  	&#125;</div><div class="line">    &#125;,</div><div class="line">    ...</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p>在这个配置下再次打包，vender.js文件减少了80k，就是vue.js的大小</p>
+<p>在这个配置下再次打包，vendor.js文件减少了80k，就是vue.js的大小</p>
 
       
     </div>
@@ -358,7 +359,7 @@
         <p><span>本文标题:</span><a href="/blog/articles/使用vue-cli脚手架开发一个项目.html">使用vue-cli脚手架开发一个项目</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">zengmaoyun</a></p>
         <p><span>发布时间:</span>2017-08-08, 12:44:02</p>
-        <p><span>最后更新:</span>2017-08-21, 18:59:35</p>
+        <p><span>最后更新:</span>2017-08-22, 16:55:00</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/blog/articles/使用vue-cli脚手架开发一个项目.html" title="使用vue-cli脚手架开发一个项目">https://zengmaoyun.github.io/blog/articles/使用vue-cli脚手架开发一个项目.html</a>
             <span class="copy-path" data-clipboard-text="原文: https://zengmaoyun.github.io/blog/articles/使用vue-cli脚手架开发一个项目.html　　作者: zengmaoyun" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -372,6 +373,12 @@
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/blog/articles/CSS日常积累.html">
+                    CSS日常积累
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -419,7 +426,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/blog/articles/CSS日常积累.html" title="上一篇: CSS日常积累">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -431,7 +440,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/articles/使用vue-cli脚手架开发一个项目.html">使用vue-cli脚手架开发一个项目</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/配置秘钥github和gitlab共存.html">github一台电脑配置多个秘钥</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/vue实践.html">vue项目学习</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/如何进行好的分享.html">如何进行好的分享【总结】</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/日常积累.html">日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/常用命令行.html">常用命令行记录</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习二.html">webpack学习(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/ES6学习.html">ES6学习</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习(一).html">webpack学习(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/hexo基础操作.html">hexo基础操作</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/css3动态提示.html">css3动态提示效果</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/js基础巩固.html">js基础巩固</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/articles/HTML日常积累.html">HTML日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/CSS日常积累.html">CSS日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/使用vue-cli脚手架开发一个项目.html">使用vue-cli脚手架开发一个项目</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/配置秘钥github和gitlab共存.html">github一台电脑配置多个秘钥</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/vue搭建项目实践.html">vue搭建项目实践</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/如何进行好的分享.html">如何进行好的分享【总结】</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/JS日常积累.html">JS日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/常用命令行.html">常用命令行记录</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习二.html">webpack学习(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/ES6学习.html">ES6学习</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习(一).html">webpack学习(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/hexo基础操作.html">hexo基础操作</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/css3动态提示.html">css3动态提示效果</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/js基础巩固.html">js基础巩固</a></li></ul>
 
 
 

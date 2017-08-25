@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="zengmaoyun" />
+
+
+
+<meta name="description" content="在快速看了一遍vue的语法之后，从git克隆一些项目来学习vue的使用，对期间的学习做下笔记。">
+<meta name="keywords" content="vue,笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue搭建项目实践">
+<meta property="og:url" content="https://zengmaoyun.github.io/blog/articles/vue搭建项目实践.html">
+<meta property="og:site_name" content="zengmaoyun&#39;s blog">
+<meta property="og:description" content="在快速看了一遍vue的语法之后，从git克隆一些项目来学习vue的使用，对期间的学习做下笔记。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-23T11:01:47.591Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue搭建项目实践">
+<meta name="twitter:description" content="在快速看了一遍vue的语法之后，从git克隆一些项目来学习vue的使用，对期间的学习做下笔记。">
+
+<link rel="apple-touch-icon" href= "/blog//apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="zengmaoyun&#39;s blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/blog//img/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>vue搭建项目实践 | zengmaoyun&#39;s blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = /blog/; </script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/blog/" class="profilepic">
+            <img src="/blog//img/head.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/blog/">zengmaoyun</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">好记性不如烂笔头</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/blog//blog/../../">主页</a></li>
+                        
+                            <li><a href="/blog//blog/../archives">所有文章</a></li>
+                        
+                            <li><a href="/blog//blog/../tags">标签云</a></li>
+                        
+                            <li><a href="/blog//blog/../about">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:windsmile_zmy@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/zengmaoyun" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/html/">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/前端构建工具/">前端构建工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/学习总结/">学习总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/标准/">标准</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/积累/">积累</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔记/">笔记</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://zengmaoyun.github.io/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端-努力学习</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">zengmaoyun</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/blog/" class="profilepic">
+                <img src="/blog//img/head.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/blog/" title="回到主页">zengmaoyun</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">好记性不如烂笔头</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/blog/../../">主页</a></li>
+                
+                    <li><a href="/blog/../archives">所有文章</a></li>
+                
+                    <li><a href="/blog/../tags">标签云</a></li>
+                
+                    <li><a href="/blog/../about">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:windsmile_zmy@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/zengmaoyun" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="_posts-vue搭建项目实践" class="article article-type-_posts" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/articles/vue搭建项目实践.html" class="article-date">
+      <time datetime="2017-07-18T02:00:00.000Z" itemprop="datePublished">2017-07-18</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue搭建项目实践
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/vue/">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/笔记/">笔记</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="vue2-webpack最新配置项目"><a href="#vue2-webpack最新配置项目" class="headerlink" title="vue2 + webpack最新配置项目"></a>vue2 + webpack最新配置项目</h2><p>github路径：<a href="https://github.com/zengmaoyun/vue2-config" target="_blank" rel="external">link</a></p>
+<h2 id="vue学习"><a href="#vue学习" class="headerlink" title="vue学习"></a>vue学习</h2><h3 id="vue语法"><a href="#vue语法" class="headerlink" title="vue语法"></a>vue语法</h3><ul>
+<li>基础语法，v-bind、v-on等</li>
+<li><a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="external">*学习文档</a><h3 id="vue-router路由"><a href="#vue-router路由" class="headerlink" title="vue-router路由"></a>vue-router路由</h3></li>
+<li>路由</li>
+<li><a href="https://router.vuejs.org/zh-cn/" target="_blank" rel="external">*学习文档</a><h3 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h3></li>
+<li>状态管理模式</li>
+</ul>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="vue组件的三种形式"><a href="#vue组件的三种形式" class="headerlink" title="vue组件的三种形式"></a>vue组件的三种形式</h3><h4 id="1、使用script标签"><a href="#1、使用script标签" class="headerlink" title="1、使用script标签"></a>1、使用script标签</h4><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">        &lt;div id="app"&gt;</div><div class="line">            &lt;my-component&gt;&lt;/my-component&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line"> &lt;-- 注意：使用&lt;script&gt;标签时，type指定为text/x-template，意在告诉浏览器这不是一段js脚本，</div><div class="line"> 浏览器在解析HTML文档时会忽略&lt;script&gt;标签内定义的内容。--&gt;</div><div class="line"> /*注意 type 和id*/</div><div class="line">        &lt;script type="text/x-template" id="myComponent"&gt;</div><div class="line">            &lt;div&gt;This is a component!&lt;/div&gt;</div><div class="line">        &lt;/script&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">    &lt;script src="js/vue.js"&gt;&lt;/script&gt;</div><div class="line">    &lt;script&gt;</div><div class="line">        //全局注册组件</div><div class="line">        Vue.component('my-component',&#123;</div><div class="line">            template: '#myComponent'</div><div class="line">        &#125;)</div><div class="line">        new Vue(&#123;</div><div class="line">            el: '#app'</div><div class="line">        &#125;)</div><div class="line">    &lt;/script&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h4 id="2、使用template标签"><a href="#2、使用template标签" class="headerlink" title="2、使用template标签"></a>2、使用template标签</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">my-component</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">/*template下面的div最后实现到了#app下面*/</div><div class="line">        <span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">"myComponent"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span>&gt;</span>This is a component!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/vue.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">        Vue.component(<span class="string">'my-component'</span>,&#123;</div><div class="line">            <span class="attr">template</span>: <span class="string">'#myComponent'</span></div><div class="line">        &#125;)</div><div class="line">        <span class="keyword">new</span> Vue(&#123;</div><div class="line">            <span class="attr">el</span>: <span class="string">'#app'</span></div><div class="line">        &#125;)</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="3、单文件组件"><a href="#3、单文件组件" class="headerlink" title="3、单文件组件*"></a>3、单文件组件*</h4><p>创建.vue后缀的文件,组件Hello.vue，放到components文件夹中。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hello"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123; msg &#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'hello'</span>,</div><div class="line">  data () &#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      <span class="attr">msg</span>: <span class="string">'你好！'</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>app.vue<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 展示模板 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./assets/logo.png"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">hello</span>&gt;</span><span class="tag">&lt;/<span class="name">hello</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="comment">// 导入组件</span></div><div class="line"><span class="keyword">import</span> Hello <span class="keyword">from</span> <span class="string">'./components/Hello'</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'app'</span>,</div><div class="line">  <span class="attr">components</span>: &#123;</div><div class="line">    Hello</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 样式代码 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="vue单文件组件方式参数"><a href="#vue单文件组件方式参数" class="headerlink" title="vue单文件组件方式参数"></a>vue单文件组件方式参数</h3><p><code>export default</code>：是ES6的语法，为模块指定默认输出，在其它模块import的时候可以任意命名。</p>
+<h2 id="webpack-config-js搭建使用vue出现的问题"><a href="#webpack-config-js搭建使用vue出现的问题" class="headerlink" title="webpack.config.js搭建使用vue出现的问题"></a>webpack.config.js搭建使用vue出现的问题</h2><h3 id="1、template不能使用"><a href="#1、template不能使用" class="headerlink" title="1、template不能使用"></a>1、template不能使用</h3><p><strong>报错：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[Vue warn]: You are using the runtime-only build of Vue where the template option is not available. Either pre-compile the templates into render functions, or use the compiler-included build. (found in root instance)</div></pre></td></tr></table></figure></p>
+<p><strong>原因：</strong><br>vue 的 package.json 中的 main 指向的是 dist/vue.common.js，而正确的指向应该是指向vue.js<br>区别：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Vue 最早会打包生成三个文件：</div><div class="line">一个是 runtime only 的文件 vue.common.js</div><div class="line">一个是 compiler only 的文件 compiler.js</div><div class="line">一个是 runtime + compiler 的文件 vue.js</div></pre></td></tr></table></figure></p>
+<p>相当于：vue.js = vue.common.js + compiler.js<br>而如果要使用 template 这个属性的话就一定要用 compiler.js，所以我们引入 vue.js 是最恰当的。</p>
+<p><strong>解决：</strong><br>在webpack.config.js文件里面配置：将vue指向vue.js文件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="comment">// 省略...</span></div><div class="line">    resolve: &#123;</div><div class="line">        <span class="attr">alias</span>: &#123;</div><div class="line">            <span class="string">'vue'</span>: <span class="string">'vue/dist/vue.js'</span></div><div class="line">        &#125;</div><div class="line">    &#125;,</div></pre></td></tr></table></figure></p>
+<h2 id="webpack插件"><a href="#webpack插件" class="headerlink" title="webpack插件"></a>webpack插件</h2><p><strong>插件</strong>：html-webpack-plugin<br><strong>作用</strong> 这个插件可以帮助生成 HTML 文件，在 body 元素中，使用 script 来包含所有你的 webpack bundles<br><strong>参数配置</strong></p>
+<ul>
+<li>title: 用来生成页面的 title 元素</li>
+<li>filename: 输出的 HTML 文件名，默认是 index.html, 也可以直接配置带有子目录。</li>
+<li>template: 模板文件路径，支持加载器，比如 html!./index.html</li>
+<li>inject: true | ‘head’ | ‘body’ | false  ,注入所有的资源到特定的 template 或者 templateContent 中，如果设置为 true 或者 body，所有的 javascript 资源将被放置到 body 元素的底部，’head’ 将放置到 head 元素中。</li>
+<li>favicon: 添加特定的 favicon 路径到输出的 HTML 文件中。</li>
+<li>minify: {} | false , 传递 html-minifier 选项给 minify 输出</li>
+<li>hash: true | false, 如果为 true, 将添加一个唯一的 webpack 编译 hash 到所有包含的脚本和 CSS 文件，对于解除 cache 很有用。</li>
+<li>cache: true | false，如果为 true, 这是默认值，仅仅在文件修改之后才会发布文件。</li>
+<li>showErrors: true | false, 如果为 true, 这是默认值，错误信息会写入到 HTML 页面中</li>
+<li>chunks: 允许只添加某些块 (比如，仅仅 unit test 块)</li>
+<li>chunksSortMode: 允许控制块在添加到页面之前的排序方式，支持的值：’none’ | ‘default’ | {function}-default:’auto’</li>
+<li>excludeChunks: 允许跳过某些块，(比如，跳过单元测试的块)</li>
+</ul>
+<p><strong>示例</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> HtmlWebpackPlugin(&#123;</div><div class="line">	<span class="attr">filename</span>: <span class="string">'index.html'</span>, <span class="comment">/*文件名*/</span></div><div class="line">    template: <span class="string">'./src/category/service/index.html'</span>,  <span class="comment">/*模板*/</span></div><div class="line">    inject: <span class="literal">true</span></div><div class="line">&#125;),</div></pre></td></tr></table></figure></p>
+<p><strong>html</strong><br>通过在配置文件中添加多次这个插件，来生成多个 HTML 文件。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/blog/articles/vue搭建项目实践.html">vue搭建项目实践</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">zengmaoyun</a></p>
+        <p><span>发布时间:</span>2017-07-18, 10:00:00</p>
+        <p><span>最后更新:</span>2017-08-23, 19:01:47</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/blog/articles/vue搭建项目实践.html" title="vue搭建项目实践">https://zengmaoyun.github.io/blog/articles/vue搭建项目实践.html</a>
+            <span class="copy-path" data-clipboard-text="原文: https://zengmaoyun.github.io/blog/articles/vue搭建项目实践.html　　作者: zengmaoyun" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/blog/articles/配置秘钥github和gitlab共存.html">
+                    github一台电脑配置多个秘钥
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/blog/articles/如何进行好的分享.html">
+                    如何进行好的分享【总结】
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#vue2-webpack最新配置项目"><span class="toc-number">1.</span> <span class="toc-text">vue2 + webpack最新配置项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue学习"><span class="toc-number">2.</span> <span class="toc-text">vue学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vue语法"><span class="toc-number">2.1.</span> <span class="toc-text">vue语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vue-router路由"><span class="toc-number">2.2.</span> <span class="toc-text">vue-router路由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vuex"><span class="toc-number">2.3.</span> <span class="toc-text">vuex</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点"><span class="toc-number">3.</span> <span class="toc-text">知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vue组件的三种形式"><span class="toc-number">3.1.</span> <span class="toc-text">vue组件的三种形式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、使用script标签"><span class="toc-number">3.1.1.</span> <span class="toc-text">1、使用script标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、使用template标签"><span class="toc-number">3.1.2.</span> <span class="toc-text">2、使用template标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、单文件组件"><span class="toc-number">3.1.3.</span> <span class="toc-text">3、单文件组件*</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vue单文件组件方式参数"><span class="toc-number">3.2.</span> <span class="toc-text">vue单文件组件方式参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack-config-js搭建使用vue出现的问题"><span class="toc-number">4.</span> <span class="toc-text">webpack.config.js搭建使用vue出现的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、template不能使用"><span class="toc-number">4.1.</span> <span class="toc-text">1、template不能使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack插件"><span class="toc-number">5.</span> <span class="toc-text">webpack插件</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/blog/articles/配置秘钥github和gitlab共存.html" title="上一篇: github一台电脑配置多个秘钥">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/blog/articles/如何进行好的分享.html" title="下一篇: 如何进行好的分享【总结】">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/articles/HTML日常积累.html">HTML日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/CSS日常积累.html">CSS日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/使用vue-cli脚手架开发一个项目.html">使用vue-cli脚手架开发一个项目</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/配置秘钥github和gitlab共存.html">github一台电脑配置多个秘钥</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/vue搭建项目实践.html">vue搭建项目实践</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/如何进行好的分享.html">如何进行好的分享【总结】</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/JS日常积累.html">JS日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/常用命令行.html">常用命令行记录</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习二.html">webpack学习(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/ES6学习.html">ES6学习</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习(一).html">webpack学习(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/hexo基础操作.html">hexo基础操作</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/css3动态提示.html">css3动态提示效果</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/js基础巩固.html">js基础巩固</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 zengmaoyun
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/blog/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/blog//background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
