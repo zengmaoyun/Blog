@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="zengmaoyun&#39;s blog">
 <meta property="og:description" content="工作学习中遇到的html知识点的积累">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-23T09:04:55.705Z">
+<meta property="og:updated_time" content="2017-08-31T11:52:31.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML日常积累">
 <meta name="twitter:description" content="工作学习中遇到的html知识点的积累">
@@ -185,7 +185,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/html/">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/前端构建工具/">前端构建工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/学习总结/">学习总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/标准/">标准</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/积累/">积累</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔记/">笔记</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/html/">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/前端构建工具/">前端构建工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/学习总结/">学习总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/标准/">标准</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/积累/">积累</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔记/">笔记</a></li></ul>
                     </div>
                 </section>
                 
@@ -304,6 +304,18 @@
 <p><strong>禁止右键</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">oncontextmenu</span>=<span class="string">self.event.returnValue</span>=<span class="string">false</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <p><strong>禁止左右键</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">oncontextmenu</span>=<span class="string">self.event.returnValue</span>=<span class="string">false</span> <span class="attr">onselectstart</span>=<span class="string">"return false"</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <h3 id="2、两列自适应布局"><a href="#2、两列自适应布局" class="headerlink" title="2、两列自适应布局"></a>2、两列自适应布局</h3><p><strong>1)</strong><br><code>左模块</code> — float:left<br><code>右模块</code> — margin-left: </p>
+<h3 id="3、字母导航（点击定位，滚动切换字母）"><a href="#3、字母导航（点击定位，滚动切换字母）" class="headerlink" title="3、字母导航（点击定位，滚动切换字母）"></a>3、字母导航（点击定位，滚动切换字母）</h3><p><strong>1、点击定位</strong><br>点击字母-页面滚动到相应位置的实现方法</p>
+<ul>
+<li><p>1、锚点<br>兼容IE8-加id<br>缺点：页面刷新的时候带#xxx会对当前页面有影响，如果涉及相关hash的操作，可能出现一些不可预料的问题</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#A"</span>&gt;</span>A<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">...文字省略</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">name</span>=<span class="string">"A"</span> <span class="attr">id</span>=<span class="string">"A"</span> &gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>2、scrollTop定位</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> anchor = $el.querySelector(selector);   <span class="comment">//要定位到的div </span></div><div class="line"><span class="built_in">document</span>.body.scrollTop = anchor.offsetTop;</div><div class="line"><span class="comment">//切换当前字母颜色</span></div><div class="line">to <span class="keyword">do</span>...</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>2、滚动切换字母</strong></p>
+<h3 id="1、滚动列表每个li元素高度固定的情况"><a href="#1、滚动列表每个li元素高度固定的情况" class="headerlink" title="1、滚动列表每个li元素高度固定的情况"></a>1、滚动列表每个li元素高度固定的情况</h3><p>获得屏幕滚过的高度+li高度+第一个li的offsetTop，计算出来当前是第几个li在屏幕顶端，显示这个li的字母导航</p>
+<h3 id="2、滚动列表每个li元素高度不固定的情况"><a href="#2、滚动列表每个li元素高度不固定的情况" class="headerlink" title="2、滚动列表每个li元素高度不固定的情况"></a>2、滚动列表每个li元素高度不固定的情况</h3><p>使用el.getBoundingClientRect().top方法，每次事件遍历所有元素，计算距离屏幕上边的高度，如果在0到负el.offsetHeight之间<br>那么奇幻字母导航为这个el的字母</p>
 
       
     </div>
@@ -315,7 +327,7 @@
         <p><span>本文标题:</span><a href="/blog/articles/HTML日常积累.html">HTML日常积累</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">zengmaoyun</a></p>
         <p><span>发布时间:</span>2017-08-23, 17:04:04</p>
-        <p><span>最后更新:</span>2017-08-23, 17:04:55</p>
+        <p><span>最后更新:</span>2017-08-31, 19:52:31</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/blog/articles/HTML日常积累.html" title="HTML日常积累">https://zengmaoyun.github.io/blog/articles/HTML日常积累.html</a>
             <span class="copy-path" data-clipboard-text="原文: https://zengmaoyun.github.io/blog/articles/HTML日常积累.html　　作者: zengmaoyun" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -345,7 +357,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML知识点"><span class="toc-number">1.</span> <span class="toc-text">HTML知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、网页上禁止左右键"><span class="toc-number">1.1.</span> <span class="toc-text">1、网页上禁止左右键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、两列自适应布局"><span class="toc-number">1.2.</span> <span class="toc-text">2、两列自适应布局</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML知识点"><span class="toc-number">1.</span> <span class="toc-text">HTML知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、网页上禁止左右键"><span class="toc-number">1.1.</span> <span class="toc-text">1、网页上禁止左右键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、两列自适应布局"><span class="toc-number">1.2.</span> <span class="toc-text">2、两列自适应布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、字母导航（点击定位，滚动切换字母）"><span class="toc-number">1.3.</span> <span class="toc-text">3、字母导航（点击定位，滚动切换字母）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1、滚动列表每个li元素高度固定的情况"><span class="toc-number">1.4.</span> <span class="toc-text">1、滚动列表每个li元素高度固定的情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、滚动列表每个li元素高度不固定的情况"><span class="toc-number">1.5.</span> <span class="toc-text">2、滚动列表每个li元素高度不固定的情况</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -388,7 +400,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/articles/HTML日常积累.html">HTML日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/CSS日常积累.html">CSS日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/使用vue-cli脚手架开发一个项目.html">使用vue-cli脚手架开发一个项目</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/配置秘钥github和gitlab共存.html">github一台电脑配置多个秘钥</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/vue搭建项目实践.html">vue搭建项目实践</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/如何进行好的分享.html">如何进行好的分享【总结】</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/JS日常积累.html">JS日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/常用命令行.html">常用命令行记录</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习二.html">webpack学习(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/ES6学习.html">ES6学习</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习(一).html">webpack学习(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/hexo基础操作.html">hexo基础操作</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/css3动态提示.html">css3动态提示效果</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/js基础巩固.html">js基础巩固</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/articles/HTML日常积累.html">HTML日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/CSS日常积累.html">CSS日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/使用vue-cli脚手架开发一个项目.html">使用vue-cli脚手架开发一个项目</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/配置秘钥github和gitlab共存.html">github一台电脑配置多个秘钥</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/vue搭建项目实践.html">vue搭建项目实践</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/如何进行好的分享.html">如何进行好的分享【总结】</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/常用命令行.html">常用命令行记录</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/JS日常积累.html">JS日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习二.html">webpack学习(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/ES6学习.html">ES6学习</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习(一).html">webpack学习(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/hexo基础操作.html">hexo基础操作</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/css3动态提示.html">css3动态提示效果</a></li></ul>
 
 
 
