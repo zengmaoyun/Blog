@@ -15,20 +15,18 @@
 
 
 
-<meta name="description" content="什么是webpack，webpack有什么作用，怎么使用webpack">
-<meta name="keywords" content="前端构建工具,webpack">
+<meta name="description" content="Underscore一个JavaScript实用库，提供了一整套函数式编程的实用功能，但是没有扩展任何JavaScript内置对象.看源码学习，记录知识点">
+<meta name="keywords" content="js,underscore">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack学习(一)">
-<meta property="og:url" content="https://zengmaoyun.github.io/blog/articles/webpack学习(一).html">
+<meta property="og:title" content="解读学习underscore.js">
+<meta property="og:url" content="https://zengmaoyun.github.io/blog/articles/解读学习underscore-js.html">
 <meta property="og:site_name" content="zengmaoyun&#39;s blog">
-<meta property="og:description" content="什么是webpack，webpack有什么作用，怎么使用webpack">
+<meta property="og:description" content="Underscore一个JavaScript实用库，提供了一整套函数式编程的实用功能，但是没有扩展任何JavaScript内置对象.看源码学习，记录知识点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://zengmaoyun.github.io/blog/img/article/basedir.png">
-<meta property="og:updated_time" content="2017-08-04T07:34:26.369Z">
+<meta property="og:updated_time" content="2017-09-26T08:07:20.172Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="webpack学习(一)">
-<meta name="twitter:description" content="什么是webpack，webpack有什么作用，怎么使用webpack">
-<meta name="twitter:image" content="https://zengmaoyun.github.io/blog/img/article/basedir.png">
+<meta name="twitter:title" content="解读学习underscore.js">
+<meta name="twitter:description" content="Underscore一个JavaScript实用库，提供了一整套函数式编程的实用功能，但是没有扩展任何JavaScript内置对象.看源码学习，记录知识点">
 
 <link rel="apple-touch-icon" href= "/blog//apple-touch-icon.png">
 
@@ -60,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>webpack学习(一) | zengmaoyun&#39;s blog</title>
+<title>解读学习underscore.js | zengmaoyun&#39;s blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -262,11 +260,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="_posts-webpack学习(一)" class="article article-type-_posts" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="_posts-解读学习underscore-js" class="article article-type-_posts" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/blog/articles/webpack学习(一).html" class="article-date">
-      <time datetime="2017-06-14T05:42:50.000Z" itemprop="datePublished">2017-06-14</time>
+      <a href="/blog/articles/解读学习underscore-js.html" class="article-date">
+      <time datetime="2017-09-21T06:56:45.000Z" itemprop="datePublished">2017-09-21</time>
 </a>
 
 
@@ -281,7 +279,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      webpack学习(一)
+      解读学习underscore.js
     </h1>
   
 
@@ -292,7 +290,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/webpack/">webpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/前端构建工具/">前端构建工具</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/underscore/">underscore</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -302,37 +300,38 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><strong>webpack官网</strong><br><a href="https://doc.webpack-china.org/guides/getting-started/" target="_blank" rel="external">webpack官网</a></p>
-<h2 id="什么是webpack"><a href="#什么是webpack" class="headerlink" title="什么是webpack"></a>什么是webpack</h2><p>Webpack是一个前端资源加载/打包工具。<br>学习参考了简书上的一个教程：<a href="http://www.jianshu.com/p/42e11515c10f" target="_blank" rel="external">webpack教程</a></p>
-<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>它将根据模块的依赖关系进行静态分析，然后将这些模块按照指定的规则生成对应的静态资源。<br>可以将多种静态资源 js、css、less 转换成一个静态文件，减少了页面的请求。</p>
-<h3 id="工作方式"><a href="#工作方式" class="headerlink" title="工作方式"></a>工作方式</h3><p>Webpack的工作方式是：<br>把你的项目当做一个整体，通过一个给定的主文件（如：index.js），Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个浏览器可识别的JavaScript文件。</p>
-<h2 id="开始使用webpack"><a href="#开始使用webpack" class="headerlink" title="开始使用webpack"></a>开始使用webpack</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>新建一个文件夹：webpackexam，打开文件夹，新建package.json文件：默认主文件是index.js</p>
-<blockquote>
-<ul>
-<li>新建package.json文件：<code>npm init</code></li>
-<li>局部安装webpack: <code>npm install webpack --save-dev</code></li>
+        <h2 id="学习underscore源码"><a href="#学习underscore源码" class="headerlink" title="学习underscore源码"></a>学习underscore源码</h2><ul>
+<li>1、用void 0 代替undefined<br><strong>原因</strong><br>1）undefined 并不是保留词（reserved word），它只是全局对象的一个属性，在低版本 IE 中能被重写。undefined 在 ES5 中已经是全局对象的一个只读（read-only）属性了，不能被重写。但是在局部作用域中，还是可以被重写的。</li>
 </ul>
-</blockquote>
-<p><code>【遇到的问题】</code>：最开始使用了webpack作为文件夹名，在初始化package.json时，默认<code>&quot;name&quot;</code>:<code>&quot;webpack&quot;</code>,在局部安装webpack时，<br><code>报错</code>：不能在名为webpack的文件夹中安装webpack，（文件夹名不能与包名相同）因此把文件夹名字改成了webpackexam（<code>注</code>：全局安装没问题）。</p>
-<p><code>【全局安装】</code>：我是看着网上的教程来学习的，教程上安装webpack包的时候是先安装全局，再安装局部，不明白为什么要安装全局的，所以只安装了局部的，继续学习之后才知道了为什么要安装全局的（下面解释）。<br><code>原因</code>：在打包依赖的时候使用命令<code>webpack source-path dist-path</code>，如果不安装全局的，必须制定webpack的具体路径（在node_modules/.bin/webpack文件夹里面）<br>安装全局：<code>npm install webpack -g</code></p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h4><p><img src="/blog/img/article/basedir.png" alt="目录结构"></p>
-<blockquote>
+<p>2）void 运算符对任何内容求值返回都是undefined，void 0相比undefined字节更小</p>
 <ul>
-<li>新建app文件夹-下面包含文件greeter.js(模块文件)和main.js(主文件)</li>
-<li>新建public文件夹(最后打包之后的文件)—下面包含index.html文件，包含一个id=main的div</li>
+<li><p>2、Object.keys(obj)(源生) —— 参数是对象或者数组，返回一个数组，包含obj里面的所有key值，如果是数组返回的是从0开始的值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.keys([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])  <span class="comment">//[0,1,2]</span></div><div class="line"><span class="built_in">Object</span>.keys(&#123;<span class="attr">a</span>:<span class="number">1</span>,<span class="attr">b</span>:<span class="number">2</span>,<span class="attr">c</span>:<span class="number">3</span>&#125;)   <span class="comment">//[a,b,c]</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>3、for in 遍历对象 —— 遍历出对象的可枚举属性<br><code>可枚举属性包括：</code><br>直接的赋值和属性初始化的属性<br>覆盖原型上面的方法属性，如toString<br><code>不可枚举的属性：</code><br>原型上面的方法和属性<br>用defineProperty()方法设置的属性<br><code>判断一个属性是否可枚举</code><br>源生方法，Object.propertyIsEnumerable</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">toString</span>: <span class="literal">null</span>&#125;;</div><div class="line">obj.propertyIsEnumerable(<span class="string">"toString"</span>)  <span class="comment">//true ， 为true是可枚举出来，为false不能枚举出来，有bug</span></div></pre></td></tr></table></figure>
+</li>
 </ul>
-</blockquote>
-<h4 id="greeter-js里面的代码"><a href="#greeter-js里面的代码" class="headerlink" title="greeter.js里面的代码"></a>greeter.js里面的代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> greet = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</div><div class="line">	greet.innerHTML = <span class="string">"this is a greet info"</span>;</div><div class="line">	<span class="keyword">return</span> greet;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="main-js里面的代码"><a href="#main-js里面的代码" class="headerlink" title="main.js里面的代码"></a>main.js里面的代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//加载依赖greeter.js</span></div><div class="line"><span class="keyword">var</span> greeter = <span class="built_in">require</span>(<span class="string">"./greeter.js"</span>);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"main"</span>).appendChild(greeter());</div></pre></td></tr></table></figure>
-<h4 id="index-html里面"><a href="#index-html里面" class="headerlink" title="index.html里面"></a>index.html里面</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line">//引用js文件</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./js/bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h3><p>文件都建好之后就是打包了，按照网上教程学习了三种打包方式，一一来说<br>1.直接命令行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">webpack app/main.js public/js/bundle.js （webpack 源文件path 目标文件path）</div></pre></td></tr></table></figure></p>
-<p>这里会遇到上面说的是否全局webpack安装的问题：如果不是全局安装，那么webpack要指定到具体目录下（node_modules/.bin/webpack）<br>——打包完成之后就在public下面新创建了一个文件夹js，下面有bundle.js：js/bundle.js</p>
-<p>2.使用配置文件直接命令行webpack:<br>在项目根目录下面新建文件：webpack.config.js<br>把输入输出目录文件配置好之后，使用命令行<code>webpack</code>，即可打包<br>__dirname(两个下划线)是node.js中的一个全局变量，它指向当前执行脚本所在的目录。<br>内容：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">	<span class="attr">entry</span>: __dirname + <span class="string">"/app/main.js"</span>,   <span class="comment">//源目录</span></div><div class="line">	output: &#123;</div><div class="line">		<span class="attr">path</span>: __dirname + <span class="string">"/public/js"</span>,  <span class="comment">//输出目录</span></div><div class="line">		filename: <span class="string">"bundle.js"</span>            <span class="comment">//输出文件名</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>3.使用npm start / npm run {script name} 打包<br>第三种方法是不使用webpack命令打包，使用npm替代<br>在package.json文件里面，在scripts里面配置上如下，在命令行中使用npm start就可以执行打包了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">"scripts"</span>: &#123;</div><div class="line">  <span class="string">"start"</span>: <span class="string">"webpack"</span>  </div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
-<p>npm的start是一个特殊的脚本名称，它的特殊性表现在：<br>在命令行中使用npm start就可以执行相关命令，如果对应的此脚本名称不是start，想要在命令行中运行时，需要这样用npm run {script name}如npm run build</p>
-<p>如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">"scripts"</span>: &#123;</div><div class="line">  <span class="string">"build"</span>: <span class="string">"webpack"</span>  </div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
-<p>打包时要使用：<code>npm run build</code></p>
-<p>【优点】<br>该方法除了快捷之外还有一个优点，因为package.json本来就和node_module相关，所以使用这个命令打包的时候，webpack可以不用全局安装。</p>
+<p><strong>Tips</strong> IE9以下枚举bug：for in 不能枚举出重写的原型上的方法(比如toString)，上面的方法在用来检测是否能枚举出重写的原型方法，也就是IE6/7/8浏览器<br><strong>问题</strong> 我在IE11里面模拟的IE6/7/8，上面的函数都能返回true，也能枚举出来toString，这个很奇怪？？？</p>
+<ul>
+<li><p>4、每个函数都是一个Function对象<br>判断一个变量是否是对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//判断是否是对象	 —— 要排除null的情况</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isObject</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> type = <span class="keyword">typeof</span> obj;</div><div class="line">	<span class="keyword">return</span> type === <span class="string">"function"</span> || type === <span class="string">"object"</span> &amp;&amp; !!obj;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>5、Object.hasOwnProperty  ——  判断属性是否是对象的自有属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> hasOwnProperty = <span class="built_in">Object</span>.prototype.hasOwnProperty;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasKey</span>(<span class="params">obj, key</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> obj != <span class="literal">null</span> &amp;&amp; hasOwnProperty.call(obj, key);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>6、Int8Array，在ES2017中定义<br>8 位整数值的类型化数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> <span class="built_in">Int8Array</span> <span class="comment">// function</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>7、typeof 正则</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> /s/ === <span class="string">'function'</span>; <span class="comment">// Chrome 1-12 , 不符合 ECMAScript 5.1</span></div><div class="line"><span class="keyword">typeof</span> /s/ === <span class="string">'object'</span>; <span class="comment">// Firefox 5+ , 符合 ECMAScript 5.1</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>8、length是数组或者类数组才有的属性，object.length 返回的是undefined<br>是否是数组，这里和jquery里面的方法有不同的地方，需要对比看看</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> MAX_ARRAY_INDEX = <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArrayLike</span>(<span class="params">collection</span>) </span>&#123;</div><div class="line">	<span class="keyword">let</span> length = !!collection &amp;&amp; <span class="string">"length"</span> <span class="keyword">in</span> collection &amp;&amp; collection.length;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">typeof</span> length === <span class="string">"number"</span> &amp;&amp; length &gt; <span class="number">0</span> &amp;&amp; length &lt; MAX_ARRAY_INDEX</div><div class="line">	<span class="comment">//或者</span></div><div class="line">	<span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(collection) == <span class="string">"[object Array]"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>9、call和apply<br>call 比 apply 快很多<br>.apply 在运行前要对作为参数的数组进行一系列检验和深拷贝，.call 则没有这些步骤</p>
+</li>
+</ul>
 
       
     </div>
@@ -341,13 +340,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/blog/articles/webpack学习(一).html">webpack学习(一)</a></p>
+        <p><span>本文标题:</span><a href="/blog/articles/解读学习underscore-js.html">解读学习underscore.js</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">zengmaoyun</a></p>
-        <p><span>发布时间:</span>2017-06-14, 13:42:50</p>
-        <p><span>最后更新:</span>2017-08-04, 15:34:26</p>
+        <p><span>发布时间:</span>2017-09-21, 14:56:45</p>
+        <p><span>最后更新:</span>2017-09-26, 16:07:20</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/blog/articles/webpack学习(一).html" title="webpack学习(一)">https://zengmaoyun.github.io/blog/articles/webpack学习(一).html</a>
-            <span class="copy-path" data-clipboard-text="原文: https://zengmaoyun.github.io/blog/articles/webpack学习(一).html　　作者: zengmaoyun" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/blog/articles/解读学习underscore-js.html" title="解读学习underscore.js">https://zengmaoyun.github.io/blog/articles/解读学习underscore-js.html</a>
+            <span class="copy-path" data-clipboard-text="原文: https://zengmaoyun.github.io/blog/articles/解读学习underscore-js.html　　作者: zengmaoyun" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -360,15 +359,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/blog/articles/ES6学习.html">
-                    ES6学习
+                <a href="/blog/articles/git常用命令.html">
+                    git常用命令
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/blog/articles/hexo基础操作.html">
-                    hexo基础操作
+                <a href="/blog/articles/优秀的前端学习网站.html">
+                    优秀的前端学习网站
                 </a>
             </div>
         
@@ -380,7 +379,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是webpack"><span class="toc-number">1.</span> <span class="toc-text">什么是webpack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#作用"><span class="toc-number">1.1.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工作方式"><span class="toc-number">1.2.</span> <span class="toc-text">工作方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始使用webpack"><span class="toc-number">2.</span> <span class="toc-text">开始使用webpack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">2.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-number">2.2.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#目录结构"><span class="toc-number">2.2.1.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#greeter-js里面的代码"><span class="toc-number">2.2.2.</span> <span class="toc-text">greeter.js里面的代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#main-js里面的代码"><span class="toc-number">2.2.3.</span> <span class="toc-text">main.js里面的代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#index-html里面"><span class="toc-number">2.2.4.</span> <span class="toc-text">index.html里面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打包"><span class="toc-number">2.3.</span> <span class="toc-text">打包</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#学习underscore源码"><span class="toc-number">1.</span> <span class="toc-text">学习underscore源码</span></a></li></ol>
         
     </div>
     <style>
@@ -411,7 +410,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/blog/articles/ES6学习.html" title="上一篇: ES6学习">
+            <a href="/blog/articles/git常用命令.html" title="上一篇: git常用命令">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -419,7 +418,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/blog/articles/hexo基础操作.html" title="下一篇: hexo基础操作">
+            <a href="/blog/articles/优秀的前端学习网站.html" title="下一篇: 优秀的前端学习网站">
                 <i class="fa fa-angle-right"></i>
             </a>
         
