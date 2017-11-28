@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="zengmaoyun&#39;s blog">
 <meta property="og:description" content="js：变量，类型，类型转换，作用域，this、闭包，es6、原型链等基础知识">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-14T02:34:37.149Z">
+<meta property="og:updated_time" content="2017-11-28T11:33:42.082Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS基础知识">
 <meta name="twitter:description" content="js：变量，类型，类型转换，作用域，this、闭包，es6、原型链等基础知识">
@@ -300,16 +300,41 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="JavaScript-类型转换"><a href="#JavaScript-类型转换" class="headerlink" title="JavaScript 类型转换"></a>JavaScript 类型转换</h4><ul>
-<li>转换为数字：Number()</li>
-<li>转换为字符串：String() </li>
-<li>转化为布尔值： Boolean()</li>
+        <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Grammar_and_types" target="_blank" rel="external">变量</a></p>
+<h2 id="变量（variable）"><a href="#变量（variable）" class="headerlink" title="变量（variable）"></a>变量（variable）</h2><p>作用域区分：全局变量，局部变量（let申明的语句块作用域）</p>
+<h3 id="base"><a href="#base" class="headerlink" title="base"></a>base</h3><p>变量的名字又叫做标识符，其需要遵守一定的规则。<br>变量组成：字母、下划线（<em>）或者美元符号（$） 和 数字 ，大部分 ISO 8859-1 或 Unicode 编码的字符 或  Unicode 转义字符<br>变量开头：字母、下划线（</em>）或者美元符号（$）</p>
+<h3 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h3><ul>
+<li>布尔环境中：变成false</li>
+<li>数字环境中：变成NaN<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a;</div><div class="line">a + <span class="number">1</span>; <span class="comment">//NaN</span></div></pre></td></tr></table></figure>
+</li>
 </ul>
-<h4 id="JavaScript-数据类型"><a href="#JavaScript-数据类型" class="headerlink" title="JavaScript 数据类型"></a>JavaScript 数据类型</h4><p>5种数据类型: string 、  number 、  boolean  、 object 、 function</p>
+<h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><ul>
+<li>布尔环境中：变成false</li>
+<li>数字环境中：变成0</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="literal">null</span>;</div><div class="line">a + <span class="number">1</span>; <span class="comment">//1</span></div></pre></td></tr></table></figure>
+<h3 id="变量提升（Hoisting）"><a href="#变量提升（Hoisting）" class="headerlink" title="变量提升（Hoisting）"></a>变量提升（Hoisting）</h3><p>Hoisting 真正发生的是在编译阶段将变量和函数声明放入内存中，但仍然保留在编码中键入的位置。<br>ES6 : let不存在 Hoisting<br><a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Hoisting" target="_blank" rel="external">变量提升</a></p>
+<h3 id="函数提升"><a href="#函数提升" class="headerlink" title="函数提升"></a>函数提升</h3><p>只有函数声明会被提升到顶部，函数表达式不会<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function foo()&#123;&#125; //会提升</div><div class="line"></div><div class="line">boo // undefined;</div><div class="line">var boo = function() &#123;&#125;   //函数表达式，只会提升boo</div></pre></td></tr></table></figure></p>
+<h3 id="申明变量"><a href="#申明变量" class="headerlink" title="申明变量"></a>申明变量</h3><p>声明变量是它所在上下文环境的不可配置属性，非声明变量是可配置的（如非声明变量可以被删除）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line">b = <span class="number">2</span>;</div><div class="line"><span class="keyword">delete</span> <span class="keyword">this</span>.a   <span class="comment">//严格模式报错，其他没反应</span></div><div class="line"><span class="keyword">delete</span> <span class="keyword">this</span>.b   <span class="comment">//删除成功</span></div></pre></td></tr></table></figure></p>
+<h2 id="常量（Constants）"><a href="#常量（Constants）" class="headerlink" title="常量（Constants）"></a>常量（Constants）</h2><p>用const定义<br>同一个作用域下，<code>不能</code>使用与变量名或函数名相同的名字来命名常量。</p>
+<p><strong>TIPS</strong></p>
+<ul>
+<li>必须初始化一个值</li>
+<li>常量不可通过赋值修改</li>
+<li>常量如果是一个对象，对象的属性可以改变（不能修改对象的引用）</li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="JavaScript-数据类型"><a href="#JavaScript-数据类型" class="headerlink" title="JavaScript 数据类型"></a>JavaScript 数据类型</h3><p>基本数据类型：null、 undefined 、 string 、 boolean、  number</p>
+<p>可识别7中数据类型：String、 Number 、 Boolean 、 null 、 undefined 、 Symbol 、 Object</p>
+<p>引用数据类型：Object</p>
 <p>3中对象类型： Object 、  Date 、 Array</p>
 <p>2个不包含任何值的数据类型：  null 、  undefined</p>
-<p>基本数据类型：null、 undefined 、 string 、 boolean、  number</p>
-<h4 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h4><ul>
+<p>js的常见内置对象：Date, Array, Math, Number, Boolean, String, Array, RegExp, Function</p>
+<p>js两个基本要素：object、 function</p>
+<ul>
+<li>object: 存放值的命名容器</li>
+<li>function: 应用程序执行的过程</li>
+</ul>
+<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><ul>
 <li>NaN 的数据类型是 number</li>
 <li>数组(Array)的数据类型是 object</li>
 <li>日期(Date)的数据类型为 object</li>
@@ -317,9 +342,9 @@
 <li>未定义变量的数据类型为 undefined</li>
 <li>typeof function () {}  是function</li>
 </ul>
-<h4 id="constructor属性"><a href="#constructor属性" class="headerlink" title="constructor属性"></a>constructor属性</h4><p>返回所有javascript变量的构造函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="string">"John"</span>.constructor                 <span class="comment">// 返回函数 String()  &#123; [native code] &#125;</span></div><div class="line">(<span class="number">3.14</span>).constructor                 <span class="comment">// 返回函数 Number()  &#123; [native code] &#125;</span></div><div class="line"><span class="literal">false</span>.constructor                  <span class="comment">// 返回函数 Boolean() &#123; [native code] &#125;</span></div><div class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>].constructor              <span class="comment">// 返回函数 Array()   &#123; [native code] &#125;</span></div><div class="line">&#123;<span class="attr">name</span>:<span class="string">'John'</span>, <span class="attr">age</span>:<span class="number">34</span>&#125;.constructor  <span class="comment">// 返回函数 Object()  &#123; [native code] &#125;</span></div><div class="line"><span class="keyword">new</span> <span class="built_in">Date</span>().constructor             <span class="comment">// 返回函数 Date()    &#123; [native code] &#125;</span></div><div class="line"><span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;.constructor         <span class="comment">// 返回函数 Function()&#123; [native code] &#125;</span></div></pre></td></tr></table></figure></p>
-<h4 id="constructor使用"><a href="#constructor使用" class="headerlink" title="constructor使用"></a>constructor使用</h4><p>用constructor来确认数组和日期<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">myArray.constructor.toString().indexOf(&quot;Array&quot;) &gt; -1;</div><div class="line">myArray.constructor.toString().indexOf(&quot;Date&quot;) &gt; -1;</div></pre></td></tr></table></figure></p>
-<h4 id="Number对象方法"><a href="#Number对象方法" class="headerlink" title="Number对象方法"></a>Number对象方法</h4><ul>
+<h3 id="constructor属性"><a href="#constructor属性" class="headerlink" title="constructor属性"></a>constructor属性</h3><p>返回所有javascript变量的构造函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="string">"John"</span>.constructor                 <span class="comment">// 返回函数 String()  &#123; [native code] &#125;</span></div><div class="line">(<span class="number">3.14</span>).constructor                 <span class="comment">// 返回函数 Number()  &#123; [native code] &#125;</span></div><div class="line"><span class="literal">false</span>.constructor                  <span class="comment">// 返回函数 Boolean() &#123; [native code] &#125;</span></div><div class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>].constructor              <span class="comment">// 返回函数 Array()   &#123; [native code] &#125;</span></div><div class="line">&#123;<span class="attr">name</span>:<span class="string">'John'</span>, <span class="attr">age</span>:<span class="number">34</span>&#125;.constructor  <span class="comment">// 返回函数 Object()  &#123; [native code] &#125;</span></div><div class="line"><span class="keyword">new</span> <span class="built_in">Date</span>().constructor             <span class="comment">// 返回函数 Date()    &#123; [native code] &#125;</span></div><div class="line"><span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;.constructor         <span class="comment">// 返回函数 Function()&#123; [native code] &#125;</span></div></pre></td></tr></table></figure></p>
+<h3 id="constructor使用"><a href="#constructor使用" class="headerlink" title="constructor使用"></a>constructor使用</h3><p>用constructor来确认数组和日期<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">myArray.constructor.toString().indexOf(&quot;Array&quot;) &gt; -1;</div><div class="line">myArray.constructor.toString().indexOf(&quot;Date&quot;) &gt; -1;</div></pre></td></tr></table></figure></p>
+<h3 id="Number对象方法"><a href="#Number对象方法" class="headerlink" title="Number对象方法"></a>Number对象方法</h3><ul>
 <li>toExponential(x): 把对象的值转换为指数计数法。</li>
 <li>toFixed(x): 把数字转换为字符串，结果的小数点后有指定位数的数字。</li>
 <li>toPrecision(x) : 把数字格式化为指定的长度。</li>
@@ -328,13 +353,24 @@
 </ul>
 <p>exp:<br>numberObject.toExponential(2)</p>
 <p>Number(“323asd”) // NaN</p>
-<h4 id="使用运算符类型转化"><a href="#使用运算符类型转化" class="headerlink" title="使用运算符类型转化"></a>使用运算符类型转化</h4><ul>
-<li>加号”+”，减号”-“ ，可以转化数字字符串为数字</li>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><ul>
+<li>转换为数字：Number()</li>
+<li>转换为字符串：String() </li>
+<li>转化为布尔值： Boolean()</li>
 </ul>
-<p>exp:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = + <span class="string">"22"</span>  <span class="comment">//22</span></div><div class="line"><span class="keyword">var</span> x = + <span class="string">"2wsd"</span> <span class="comment">//NaN</span></div></pre></td></tr></table></figure></p>
+<h3 id="使用运算符类型转换"><a href="#使用运算符类型转换" class="headerlink" title="使用运算符类型转换"></a>使用运算符类型转换</h3><ul>
+<li>加号”+”，减号”-“ ，可以转化数字字符串为数字<br><strong>单目加法运算符</strong><br>exp:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = ( + <span class="string">"22"</span> )  <span class="comment">//22</span></div><div class="line"><span class="keyword">var</span> x = ( + <span class="string">"2wsd"</span> ) <span class="comment">//NaN</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>var x = “5” - 0  //5<br>var x = 5 + null //5,  null转化为了0</p>
-<h4 id="自动转化"><a href="#自动转化" class="headerlink" title="自动转化"></a>自动转化</h4><p>当你尝试输出一个对象或一个变量时 JavaScript 会自动调用变量的 toString() 方法：</p>
+<h3 id="自动转换"><a href="#自动转换" class="headerlink" title="自动转换"></a>自动转换</h3><p>当你尝试输出一个对象或一个变量时 JavaScript 会自动调用变量的 toString() 方法：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"demo"</span>).innerHTML = myVar;</div><div class="line"></div><div class="line"><span class="comment">// if myVar = &#123;name:"Fjohn"&#125;  // toString 转换为 "[object Object]"</span></div><div class="line"><span class="comment">// if myVar = [1,2,3,4]       // toString 转换为 "1,2,3,4"</span></div><div class="line"><span class="comment">// if myVar = new Date()      // toString 转换为 "Fri Jul 18 2014 09:08:55 GMT+0200"</span></div></pre></td></tr></table></figure>
+<h2 id="this（执行环境上下文）"><a href="#this（执行环境上下文）" class="headerlink" title="this（执行环境上下文）"></a>this（执行环境上下文）</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this" target="_blank" rel="external">MDN-this-LINK</a></p>
+<p>严格模式下，this为执行上下文<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="meta">  "use strict"</span>; <span class="comment">// 这里是严格模式</span></div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">f2() <span class="comment">// undefined</span></div><div class="line"><span class="built_in">window</span>.f2()  <span class="comment">//window</span></div></pre></td></tr></table></figure></p>
+<h3 id="this传递"><a href="#this传递" class="headerlink" title="this传递"></a>this传递</h3><p>使用call或者apply<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">func.call(obj, arg1, arg2...)</div><div class="line">func.apply(obj, [arg1,arg2...])</div></pre></td></tr></table></figure></p>
+<p>ES6引入了bind方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">func.bind(obj/<span class="keyword">this</span>)</div></pre></td></tr></table></figure></p>
+<p>箭头函数的上下文已经确定（外层执行上下文），不能通过call,apply和bind改变<br><strong>TIPS</strong><br>箭头函数的this是在<code>函数调用</code>过程中设置的；</p>
+
       
     </div>
     
@@ -345,7 +381,7 @@
         <p><span>本文标题:</span><a href="/blog/articles/JS基础知识.html">JS基础知识</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">zengmaoyun</a></p>
         <p><span>发布时间:</span>2017-11-13, 20:34:36</p>
-        <p><span>最后更新:</span>2017-11-14, 10:34:37</p>
+        <p><span>最后更新:</span>2017-11-28, 19:33:42</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/blog/articles/JS基础知识.html" title="JS基础知识">https://zengmaoyun.github.io/blog/articles/JS基础知识.html</a>
             <span class="copy-path" data-clipboard-text="原文: https://zengmaoyun.github.io/blog/articles/JS基础知识.html　　作者: zengmaoyun" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -381,7 +417,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型"><span class="toc-number">1.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JavaScript-类型转换"><span class="toc-number">1.1.</span> <span class="toc-text">JavaScript 类型转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JavaScript-数据类型"><span class="toc-number">1.2.</span> <span class="toc-text">JavaScript 数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tips"><span class="toc-number">1.3.</span> <span class="toc-text">Tips</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#constructor属性"><span class="toc-number">1.4.</span> <span class="toc-text">constructor属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#constructor使用"><span class="toc-number">1.5.</span> <span class="toc-text">constructor使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Number对象方法"><span class="toc-number">1.6.</span> <span class="toc-text">Number对象方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用运算符类型转化"><span class="toc-number">1.7.</span> <span class="toc-text">使用运算符类型转化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自动转化"><span class="toc-number">1.8.</span> <span class="toc-text">自动转化</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#变量（variable）"><span class="toc-number">1.</span> <span class="toc-text">变量（variable）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#base"><span class="toc-number">1.1.</span> <span class="toc-text">base</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text">undefined</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.3.</span> <span class="toc-text">null</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量提升（Hoisting）"><span class="toc-number">1.4.</span> <span class="toc-text">变量提升（Hoisting）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数提升"><span class="toc-number">1.5.</span> <span class="toc-text">函数提升</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#申明变量"><span class="toc-number">1.6.</span> <span class="toc-text">申明变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常量（Constants）"><span class="toc-number">2.</span> <span class="toc-text">常量（Constants）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型"><span class="toc-number">3.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-数据类型"><span class="toc-number">3.1.</span> <span class="toc-text">JavaScript 数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tips"><span class="toc-number">3.2.</span> <span class="toc-text">Tips</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#constructor属性"><span class="toc-number">3.3.</span> <span class="toc-text">constructor属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#constructor使用"><span class="toc-number">3.4.</span> <span class="toc-text">constructor使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Number对象方法"><span class="toc-number">3.5.</span> <span class="toc-text">Number对象方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型转换"><span class="toc-number">4.</span> <span class="toc-text">类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用运算符类型转换"><span class="toc-number">4.1.</span> <span class="toc-text">使用运算符类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动转换"><span class="toc-number">4.2.</span> <span class="toc-text">自动转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this（执行环境上下文）"><span class="toc-number">5.</span> <span class="toc-text">this（执行环境上下文）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#this传递"><span class="toc-number">5.1.</span> <span class="toc-text">this传递</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -426,7 +462,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/articles/关于Object对象.html">关于Object对象</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/JS基础知识.html">JS基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/git常用命令.html">git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/解读学习underscore-js.html">解读学习underscore.js</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/优秀的前端学习网站.html">优秀的前端学习网站</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/HTML日常积累.html">HTML日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/CSS日常积累.html">CSS日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/使用vue-cli脚手架开发一个项目.html">使用vue-cli脚手架开发一个项目</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/配置秘钥github和gitlab共存.html">github一台电脑配置多个秘钥</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/vue搭建项目实践.html">vue搭建项目实践</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/如何进行好的分享.html">如何进行好的分享【总结】</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/JS日常积累.html">JS日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/常用命令行.html">常用命令行记录</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习二.html">webpack学习(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/ES6学习.html">ES6学习</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习(一).html">webpack学习(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/hexo基础操作.html">hexo基础操作</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/css3动态提示.html">css3动态提示效果</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/articles/关于Object对象.html">关于Object对象</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/JS基础知识.html">JS基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/git常用命令.html">git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/解读学习underscore-js.html">解读学习underscore.js</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/优秀的前端学习网站.html">优秀的前端学习网站</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/HTML日常积累.html">HTML日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/CSS日常积累.html">CSS日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/使用vue-cli脚手架开发一个项目.html">使用vue-cli脚手架开发一个项目</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/配置秘钥github和gitlab共存.html">github一台电脑配置多个秘钥</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/vue搭建项目实践.html">vue搭建项目实践</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/如何进行好的分享.html">如何进行好的分享【总结】</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/常用命令行.html">常用命令行记录</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/JS日常积累.html">JS日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习二.html">webpack学习(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/ES6学习.html">ES6学习</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习(一).html">webpack学习(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/hexo基础操作.html">hexo基础操作</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/css3动态提示.html">css3动态提示效果</a></li></ul>
 
 
 
