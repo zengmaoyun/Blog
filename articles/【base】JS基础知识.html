@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="zengmaoyun" />
+
+
+
+<meta name="description" content="js：变量，类型，类型转换，作用域，this、闭包，es6、原型链等基础知识">
+<meta name="keywords" content="JS,基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【base】JS基础知识">
+<meta property="og:url" content="https://zengmaoyun.github.io/blog/articles/【base】JS基础知识.html">
+<meta property="og:site_name" content="zengmaoyun&#39;s blog">
+<meta property="og:description" content="js：变量，类型，类型转换，作用域，this、闭包，es6、原型链等基础知识">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-30T09:38:42.594Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【base】JS基础知识">
+<meta name="twitter:description" content="js：变量，类型，类型转换，作用域，this、闭包，es6、原型链等基础知识">
+
+<link rel="apple-touch-icon" href= "/blog//apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="zengmaoyun&#39;s blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/blog//img/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>【base】JS基础知识 | zengmaoyun&#39;s blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = /blog/; </script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/blog/" class="profilepic">
+            <img src="/blog//img/head.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/blog/">zengmaoyun</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">好记性不如烂笔头</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/blog//blog/../../">主页</a></li>
+                        
+                            <li><a href="/blog//blog/../archives">所有文章</a></li>
+                        
+                            <li><a href="/blog//blog/../tags">标签云</a></li>
+                        
+                            <li><a href="/blog//blog/../about">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:windsmile_zmy@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/zengmaoyun" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JS/">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/html/">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/object/">object</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/underscore/">underscore</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/前端构建工具/">前端构建工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/学习总结/">学习总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/学习连接/">学习连接</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/标准/">标准</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/积累/">积累</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/网络/">网络</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://zengmaoyun.github.io/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端-努力学习</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">zengmaoyun</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/blog/" class="profilepic">
+                <img src="/blog//img/head.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/blog/" title="回到主页">zengmaoyun</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">好记性不如烂笔头</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/blog//blog/../../">主页</a></li>
+                
+                    <li><a href="/blog//blog/../archives">所有文章</a></li>
+                
+                    <li><a href="/blog//blog/../tags">标签云</a></li>
+                
+                    <li><a href="/blog//blog/../about">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:windsmile_zmy@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/zengmaoyun" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="_posts-【base】JS基础知识" class="article article-type-_posts" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/articles/【base】JS基础知识.html" class="article-date">
+      <time datetime="2017-11-13T12:34:36.000Z" itemprop="datePublished">2017-11-13</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【base】JS基础知识
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/基础/">基础</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Grammar_and_types" target="_blank" rel="external">变量</a></p>
+<h2 id="变量（variable）"><a href="#变量（variable）" class="headerlink" title="变量（variable）"></a>变量（variable）</h2><p>作用域区分：全局变量，局部变量（let声明的语句块作用域）</p>
+<h3 id="base"><a href="#base" class="headerlink" title="base"></a>base</h3><p>变量的名字又叫做标识符，其需要遵守一定的规则。<br>变量组成：字母、下划线（<em>）或者美元符号（$） 和 数字 ，大部分 ISO 8859-1 或 Unicode 编码的字符 或  Unicode 转义字符<br>变量开头：字母、下划线（</em>）或者美元符号（$）</p>
+<h3 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h3><ul>
+<li>布尔环境中：变成false</li>
+<li>数字环境中：变成NaN<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a;</div><div class="line">a + <span class="number">1</span>; <span class="comment">//NaN</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><ul>
+<li>布尔环境中：变成false</li>
+<li>数字环境中：变成0</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="literal">null</span>;</div><div class="line">a + <span class="number">1</span>; <span class="comment">//1</span></div></pre></td></tr></table></figure>
+<h3 id="变量提升（Hoisting）"><a href="#变量提升（Hoisting）" class="headerlink" title="变量提升（Hoisting）"></a>变量提升（Hoisting）</h3><p>Hoisting 真正发生的是在编译阶段将变量和函数声明放入内存中，但仍然保留在编码中键入的位置。<br>ES6 : let不存在 Hoisting<br><a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Hoisting" target="_blank" rel="external">变量提升</a></p>
+<h3 id="函数提升"><a href="#函数提升" class="headerlink" title="函数提升"></a>函数提升</h3><p>只有函数声明会被提升到顶部，函数表达式不会<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function foo()&#123;&#125; //会提升</div><div class="line"></div><div class="line">boo // undefined;</div><div class="line">var boo = function() &#123;&#125;   //函数表达式，只会提升boo</div></pre></td></tr></table></figure></p>
+<h3 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h3><p>声明变量是它所在上下文环境的不可配置属性，非声明变量是可配置的（如非声明变量可以被删除）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line">b = <span class="number">2</span>;</div><div class="line"><span class="keyword">delete</span> <span class="keyword">this</span>.a   <span class="comment">//严格模式报错，其他没反应</span></div><div class="line"><span class="keyword">delete</span> <span class="keyword">this</span>.b   <span class="comment">//删除成功</span></div></pre></td></tr></table></figure></p>
+<h2 id="常量（Constants）"><a href="#常量（Constants）" class="headerlink" title="常量（Constants）"></a>常量（Constants）</h2><p>用const定义<br>同一个作用域下，<code>不能</code>使用与变量名或函数名相同的名字来命名常量。</p>
+<p><strong>TIPS</strong></p>
+<ul>
+<li>必须初始化一个值</li>
+<li>常量不可通过赋值修改</li>
+<li>常量如果是一个对象，对象的属性可以改变（不能修改对象的引用）</li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="JavaScript-数据类型"><a href="#JavaScript-数据类型" class="headerlink" title="JavaScript 数据类型"></a>JavaScript 数据类型</h3><p>基本数据类型：null、 undefined 、 string 、 boolean、  number</p>
+<p>可识别7中数据类型：String、 Number 、 Boolean 、 null 、 undefined 、 Symbol 、 Object</p>
+<p>引用数据类型：Object</p>
+<p>3中对象类型： Object 、  Date 、 Array</p>
+<p>2个不包含任何值的数据类型：  null 、  undefined</p>
+<p>js的常见内置对象：Date, Array, Math, Number, Boolean, String, Array, RegExp, Function</p>
+<p>js两个基本要素：object、 function</p>
+<ul>
+<li>object: 存放值的命名容器</li>
+<li>function: 应用程序执行的过程</li>
+</ul>
+<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><ul>
+<li>NaN 的数据类型是 number</li>
+<li>数组(Array)的数据类型是 object</li>
+<li>日期(Date)的数据类型为 object</li>
+<li>null 的数据类型是 object</li>
+<li>未定义变量的数据类型为 undefined</li>
+<li>typeof function () {}  是function</li>
+</ul>
+<h3 id="constructor属性"><a href="#constructor属性" class="headerlink" title="constructor属性"></a>constructor属性</h3><p>返回所有javascript变量的构造函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="string">"John"</span>.constructor                 <span class="comment">// 返回函数 String()  &#123; [native code] &#125;</span></div><div class="line">(<span class="number">3.14</span>).constructor                 <span class="comment">// 返回函数 Number()  &#123; [native code] &#125;</span></div><div class="line"><span class="literal">false</span>.constructor                  <span class="comment">// 返回函数 Boolean() &#123; [native code] &#125;</span></div><div class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>].constructor              <span class="comment">// 返回函数 Array()   &#123; [native code] &#125;</span></div><div class="line">&#123;<span class="attr">name</span>:<span class="string">'John'</span>, <span class="attr">age</span>:<span class="number">34</span>&#125;.constructor  <span class="comment">// 返回函数 Object()  &#123; [native code] &#125;</span></div><div class="line"><span class="keyword">new</span> <span class="built_in">Date</span>().constructor             <span class="comment">// 返回函数 Date()    &#123; [native code] &#125;</span></div><div class="line"><span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;.constructor         <span class="comment">// 返回函数 Function()&#123; [native code] &#125;</span></div></pre></td></tr></table></figure></p>
+<h3 id="constructor使用"><a href="#constructor使用" class="headerlink" title="constructor使用"></a>constructor使用</h3><p>用constructor来确认数组和日期<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">myArray.constructor.toString().indexOf(&quot;Array&quot;) &gt; -1;</div><div class="line">myArray.constructor.toString().indexOf(&quot;Date&quot;) &gt; -1;</div></pre></td></tr></table></figure></p>
+<h3 id="Number对象方法"><a href="#Number对象方法" class="headerlink" title="Number对象方法"></a>Number对象方法</h3><ul>
+<li>toExponential(x): 把对象的值转换为指数计数法。</li>
+<li>toFixed(x): 把数字转换为字符串，结果的小数点后有指定位数的数字。</li>
+<li>toPrecision(x) : 把数字格式化为指定的长度。</li>
+<li>toString() : 把数字转换为字符串，使用指定的基数。</li>
+<li>valueOf()    : 返回一个 Number 对象的基本数字值。</li>
+</ul>
+<p>exp:<br>numberObject.toExponential(2)</p>
+<p>Number(“323asd”) // NaN</p>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><ul>
+<li>转换为数字：Number()</li>
+<li>转换为字符串：String() </li>
+<li>转化为布尔值： Boolean()</li>
+</ul>
+<h3 id="使用运算符类型转换"><a href="#使用运算符类型转换" class="headerlink" title="使用运算符类型转换"></a>使用运算符类型转换</h3><ul>
+<li>加号”+”，减号”-“ ，可以转化数字字符串为数字<br><strong>单目加法运算符</strong><br>exp:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = ( + <span class="string">"22"</span> )  <span class="comment">//22</span></div><div class="line"><span class="keyword">var</span> x = ( + <span class="string">"2wsd"</span> ) <span class="comment">//NaN</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>var x = “5” - 0  //5<br>var x = 5 + null //5,  null转化为了0</p>
+<h3 id="自动转换"><a href="#自动转换" class="headerlink" title="自动转换"></a>自动转换</h3><p>当你尝试输出一个对象或一个变量时 JavaScript 会自动调用变量的 toString() 方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"demo"</span>).innerHTML = myVar;</div><div class="line"></div><div class="line"><span class="comment">// if myVar = &#123;name:"Fjohn"&#125;  // toString 转换为 "[object Object]"</span></div><div class="line"><span class="comment">// if myVar = [1,2,3,4]       // toString 转换为 "1,2,3,4"</span></div><div class="line"><span class="comment">// if myVar = new Date()      // toString 转换为 "Fri Jul 18 2014 09:08:55 GMT+0200"</span></div></pre></td></tr></table></figure>
+<h2 id="this（执行环境上下文）"><a href="#this（执行环境上下文）" class="headerlink" title="this（执行环境上下文）"></a>this（执行环境上下文）</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this" target="_blank" rel="external">MDN-this-LINK</a></p>
+<p>严格模式下，this为执行上下文<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="meta">  "use strict"</span>; <span class="comment">// 这里是严格模式</span></div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">f2() <span class="comment">// undefined</span></div><div class="line"><span class="built_in">window</span>.f2()  <span class="comment">//window</span></div></pre></td></tr></table></figure></p>
+<h3 id="this传递"><a href="#this传递" class="headerlink" title="this传递"></a>this传递</h3><p>使用call或者apply<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">func.call(obj, arg1, arg2...)</div><div class="line">func.apply(obj, [arg1,arg2...])</div></pre></td></tr></table></figure></p>
+<p>ES6引入了bind方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">func.bind(obj/<span class="keyword">this</span>)</div></pre></td></tr></table></figure></p>
+<p>箭头函数的上下文已经确定（外层执行上下文），不能通过call,apply和bind改变<br><strong>TIPS</strong><br>箭头函数的this是在<code>函数调用</code>过程中设置的，<strong>取得是调用函数那个时刻的上下文环境</strong>。</p>
+<h2 id="闭包（Closures）"><a href="#闭包（Closures）" class="headerlink" title="闭包（Closures）"></a>闭包（Closures）</h2><p>一个闭包是一个可以自己拥有独立的环境与变量的的表达式（通常是函数）。</p>
+<h3 id="函数指向并调用自身"><a href="#函数指向并调用自身" class="headerlink" title="函数指向并调用自身"></a>函数指向并调用自身</h3><ul>
+<li>1、直接调函数名</li>
+<li>2、<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments/callee" target="_blank" rel="external">arguments.callee</a></li>
+<li>3、作用域下的一个指向该函数的变量名<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="comment">// statements go here</span></div><div class="line">&#125;;</div><div class="line">bar()</div><div class="line"><span class="built_in">arguments</span>.callee</div><div class="line">foo()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="arguments对象"><a href="#arguments对象" class="headerlink" title="arguments对象"></a>arguments对象</h3><p>函数参数属性，有length值</p>
+<h3 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h3><p>ES6</p>
+<ul>
+<li>1、默认参数</li>
+</ul>
+<p>函数的参数的默认值是undefined，可以自己设定避免内部再判断<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiply</span>(<span class="params">a, b = <span class="number">1</span></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> a*b;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>2、剩余参数（…arg）<br>剩余参数可以在函数参数的任意位置处，前面可以有多个确定参数<br>如：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiply</span>(<span class="params">...theArgs</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> theArgs.map(<span class="function"><span class="params">x</span> =&gt;</span> <span class="number">2</span> * x);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="encodeURI和encodeURIComponent区别"><a href="#encodeURI和encodeURIComponent区别" class="headerlink" title="encodeURI和encodeURIComponent区别"></a>encodeURI和encodeURIComponent区别</h4><p>encodeURI(String)主要用于整个URI(例如，url)<br>而encodeURIComponent(String)主要用于对URI中的某一段(例如前面URI中的value．htm)进行编码。<br><strong>主要区别：</strong><br>encodeURI()不会对本身属于URI的特殊字符进行编码，例如冒号、正斜杠、问号和井字号；而encodeURIComponent()则会对它发现的任何非标准字符进行编。</p>
+<h3 id="for-in-和-for-of-ES6-的区别"><a href="#for-in-和-for-of-ES6-的区别" class="headerlink" title="for-in 和 for-of(ES6)的区别"></a>for-in 和 for-of(ES6)的区别</h3><p>for…in： 循环遍历的结果是数组元素的下标不同的值，包括对象<br>for…of 遍历的结果是元素的值</p>
+<h2 id="Map对象（ES6）"><a href="#Map对象（ES6）" class="headerlink" title="Map对象（ES6）"></a>Map对象（ES6）</h2><p>一个Map对象就是一个简单的键值对映射集合，可以按照数据插入时的顺序遍历所有的元素<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> sayings = <span class="keyword">new</span> <span class="built_in">Map</span>();</div><div class="line">sayings.set(<span class="string">'dog'</span>, <span class="string">'woof'</span>);</div><div class="line">sayings.set(<span class="string">'cat'</span>, <span class="string">'meow'</span>);</div><div class="line">sayings.set(<span class="string">'elephant'</span>, <span class="string">'toot'</span>);</div><div class="line">sayings.size; <span class="comment">// 3</span></div><div class="line">sayings.get(<span class="string">'fox'</span>); <span class="comment">// undefined</span></div><div class="line">sayings.has(<span class="string">'dog'</span>); <span class="comment">// true</span></div><div class="line">sayings.has(<span class="string">'bird'</span>); <span class="comment">// false</span></div><div class="line">sayings.delete(<span class="string">'dog'</span>);</div><div class="line">sayings.has(<span class="string">'dog'</span>); <span class="comment">// false</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> [key, value] <span class="keyword">of</span> sayings) &#123;</div><div class="line">  <span class="built_in">console</span>.log(key + <span class="string">' goes '</span> + value);</div><div class="line">&#125;</div><div class="line"><span class="comment">// "cat goes meow"</span></div><div class="line"><span class="comment">// "elephant goes toot"</span></div><div class="line"></div><div class="line">sayings.clear();</div><div class="line">sayings.size; <span class="comment">// 0</span></div></pre></td></tr></table></figure></p>
+<h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><p>用var定义的全局变量不能用delete删除<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="keyword">delete</span> a; <span class="comment">// false</span></div><div class="line">b = <span class="number">2</span>;</div><div class="line"><span class="keyword">delete</span> b; <span class="comment">//true，b已经被删除了</span></div></pre></td></tr></table></figure></p>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>获取原型对象：<br>非标准：obj.<em>prop</em><br>ES6：</p>
+<ul>
+<li>Object.getPrototypeOf(obj)</li>
+<li>Object.setPrototypeOf(obj)</li>
+</ul>
+<h3 id="Object-create-（ES5）"><a href="#Object-create-（ES5）" class="headerlink" title="Object.create()（ES5）"></a>Object.create()（ES5）</h3><p>可以调用这个方法来创建一个新对象。新对象的原型就是调用 create 方法时传入的第一个参数。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Object.create(obj);</div><div class="line"></div><div class="line">### obj.hasOwnProperty</div><div class="line"></div><div class="line">``` javascript</div><div class="line">var a = &#123;"s":1&#125;</div><div class="line">a.hasOwnProperty("d")  //false</div><div class="line">a.hasOwnProperty("ds") //true</div><div class="line"></div><div class="line">var d = Object.create(null);</div><div class="line">// d ---&gt; null</div><div class="line">console.log(d.hasOwnProperty);  //undefined</div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"><span class="comment">//执行</span></div><div class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> Foo();</div><div class="line">相当于执行</div><div class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">o._proto_ = Foo.prototype;</div><div class="line">Foo.call(o);</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/blog/articles/【base】JS基础知识.html">【base】JS基础知识</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">zengmaoyun</a></p>
+        <p><span>发布时间:</span>2017-11-13, 20:34:36</p>
+        <p><span>最后更新:</span>2017-11-30, 17:38:42</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/blog/articles/【base】JS基础知识.html" title="【base】JS基础知识">https://zengmaoyun.github.io/blog/articles/【base】JS基础知识.html</a>
+            <span class="copy-path" data-clipboard-text="原文: https://zengmaoyun.github.io/blog/articles/【base】JS基础知识.html　　作者: zengmaoyun" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/blog/articles/关于Object对象.html">
+                    关于Object对象
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/blog/articles/git常用命令.html">
+                    git常用命令
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#变量（variable）"><span class="toc-number">1.</span> <span class="toc-text">变量（variable）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#base"><span class="toc-number">1.1.</span> <span class="toc-text">base</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text">undefined</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.3.</span> <span class="toc-text">null</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量提升（Hoisting）"><span class="toc-number">1.4.</span> <span class="toc-text">变量提升（Hoisting）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数提升"><span class="toc-number">1.5.</span> <span class="toc-text">函数提升</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#声明变量"><span class="toc-number">1.6.</span> <span class="toc-text">声明变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常量（Constants）"><span class="toc-number">2.</span> <span class="toc-text">常量（Constants）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型"><span class="toc-number">3.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-数据类型"><span class="toc-number">3.1.</span> <span class="toc-text">JavaScript 数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tips"><span class="toc-number">3.2.</span> <span class="toc-text">Tips</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#constructor属性"><span class="toc-number">3.3.</span> <span class="toc-text">constructor属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#constructor使用"><span class="toc-number">3.4.</span> <span class="toc-text">constructor使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Number对象方法"><span class="toc-number">3.5.</span> <span class="toc-text">Number对象方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型转换"><span class="toc-number">4.</span> <span class="toc-text">类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用运算符类型转换"><span class="toc-number">4.1.</span> <span class="toc-text">使用运算符类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动转换"><span class="toc-number">4.2.</span> <span class="toc-text">自动转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this（执行环境上下文）"><span class="toc-number">5.</span> <span class="toc-text">this（执行环境上下文）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#this传递"><span class="toc-number">5.1.</span> <span class="toc-text">this传递</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#闭包（Closures）"><span class="toc-number">6.</span> <span class="toc-text">闭包（Closures）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数指向并调用自身"><span class="toc-number">6.1.</span> <span class="toc-text">函数指向并调用自身</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#arguments对象"><span class="toc-number">6.2.</span> <span class="toc-text">arguments对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数参数"><span class="toc-number">6.3.</span> <span class="toc-text">函数参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#encodeURI和encodeURIComponent区别"><span class="toc-number">6.3.1.</span> <span class="toc-text">encodeURI和encodeURIComponent区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-in-和-for-of-ES6-的区别"><span class="toc-number">6.4.</span> <span class="toc-text">for-in 和 for-of(ES6)的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Map对象（ES6）"><span class="toc-number">7.</span> <span class="toc-text">Map对象（ES6）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#delete"><span class="toc-number">7.1.</span> <span class="toc-text">delete</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原型链"><span class="toc-number">8.</span> <span class="toc-text">原型链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Object-create-（ES5）"><span class="toc-number">8.1.</span> <span class="toc-text">Object.create()（ES5）</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/blog/articles/关于Object对象.html" title="上一篇: 关于Object对象">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/blog/articles/git常用命令.html" title="下一篇: git常用命令">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/articles/【积累】其他积累.html">【积累】其他积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/【base】网络基础知识.html">【base】网络基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/关于Object对象.html">关于Object对象</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/【base】JS基础知识.html">【base】JS基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/git常用命令.html">git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/解读学习underscore-js.html">解读学习underscore.js</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/优秀的前端学习网站.html">优秀的前端学习网站</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/HTML日常积累.html">HTML日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/CSS日常积累.html">CSS日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/使用vue-cli脚手架开发一个项目.html">使用vue-cli脚手架开发一个项目</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/配置秘钥github和gitlab共存.html">github一台电脑配置多个秘钥</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/vue搭建项目实践.html">vue搭建项目实践</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/如何进行好的分享.html">如何进行好的分享【总结】</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/JS日常积累.html">JS日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/常用命令行.html">常用命令行记录</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习二.html">webpack学习(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/ES6学习.html">ES6学习</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/webpack学习(一).html">webpack学习(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/hexo基础操作.html">hexo基础操作</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/articles/css3动态提示.html">css3动态提示效果</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2018 zengmaoyun
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/blog/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/blog//background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
